@@ -75,3 +75,7 @@ Introducing our superapp, sCity. sCity is a web application that allows you to m
     Aplikasi ini diharapkan dapat membantu para nelayan dalam mempromosikan dan menjual hasil kekayaan laut yang didapatkannya.
 
 Those services are accessible online with a single sign on authentication through your smart devices that support web browsers such as mobile phones, tablets, or personal computers.
+
+## Alur Webservice
+---
+Seluruh modul aplikasi ini menggunakan API yang tersedia di web online tugas tengah semester sebekumnya yaitu SCity. Nantinya Form pada aplikasi ini akan melakukan melakukan POST request ke aplikasi web SCity ke endpoint modul yang bersesuaian. Kemudia akan dilakukan juga pengambilan data dengan menggunakan GET request dari aplikasi web SCity.
