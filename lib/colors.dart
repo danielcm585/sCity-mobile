@@ -1,0 +1,16 @@
+import 'package:flutter/material.dart';
+
+Map<int, Color> colors = {
+  50: const Color.fromRGBO(0xec,0xfd,0xf5,1),
+  100: const Color.fromRGBO(0xd1,0xfa,0xe5,1),
+  200: const Color.fromRGBO(0xa7,0xf3,0xd0,1),
+  300: const Color.fromRGBO(0x5e,0xea,0xd4,1),
+  400: const Color.fromRGBO(0x2d,0xd4,0xbf,1),
+  500: const Color.fromRGBO(0x10,0xb9,0x81,1),
+  600: const Color.fromRGBO(0x05,0x96,0x69,1),
+  700: const Color.fromRGBO(0x0f,0x76,0x6e,1),
+  800: const Color.fromRGBO(0x11,0x5e,0x59,1),
+  900: const Color.fromRGBO(0x13,0x4e,0x4a,1),
+};
+
+MaterialColor appColor = MaterialColor(const Color.fromRGBO(0x10,0xb9,0x81,1).value, colors);
