@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:scity_mobile/colors.dart';
-import 'package:scity_mobile/pages/home_page.dart';
+import 'package:scity_mobile/pages/home/home_page.dart';
+import 'package:scity_mobile/providers/auth_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider())
+      ],
+      child: const MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -12,13 +21,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'sCity',
       theme: ThemeData(
         primarySwatch: appColor,
         bottomAppBarColor: appColor,
         splashColor: appColor
       ),
-      home: const HomePage(title: 'sCity'),
+      home: const HomePage(),
     );
   }
 }

@@ -1,11 +1,10 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:scity_mobile/components/drawer.dart';
+import 'package:scity_mobile/pages/auth/login_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
-
-  final String title;
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -16,13 +15,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          widget.title,
-          style: const TextStyle(
+        title: const Text(
+          'sCity',
+          style: TextStyle(
             color: Colors.white
           )
         ),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
+      drawer: const AppDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -63,7 +64,10 @@ class _HomePageState extends State<HomePage> {
                               const SizedBox(height: 26),
                               TextButton(
                                 onPressed: () {
-                                  
+                                  Navigator.pushReplacement(
+                                    context, 
+                                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                                  );
                                 },
                                 style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(0x10,0xb9,0x81,1)),
