@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scity_mobile/components/drawer.dart';
 import 'package:scity_mobile/pages/auth/register_page.dart';
 import 'package:scity_mobile/pages/home/home_page.dart';
@@ -122,13 +123,17 @@ class _LoginPageState extends State<LoginPage> {
                     width: double.maxFinite,
                     height: 42,
                     child: TextButton(
-                      onPressed: () { 
-                        // TODO: Validate input
-                        Map<String,dynamic> resp = handleLogin(); 
+                      onPressed: () async {
+                        Map<String,dynamic> resp = await handleLogin(username, password);
                         if (resp['status'] >= 400) {
-                          // TODO: Show error message
+                          Fluttertoast.showToast(
+                            msg: resp['message'],
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white,
+                          );
                           return;
                         }
+                        if (!mounted) return;
                         context.read<AuthProvider>().setIsLoggedIn(true);
                         Navigator.pushReplacement(
                           context, 
