@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 Future<Map<String,dynamic>> handleRegister(username, password) async {
-  var formData = new Map<String,dynamic>();
+  var formData = <String,dynamic>{};
   formData['username'] = username;
   formData['password'] = password;
 
