@@ -1,23 +1,28 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:scity_mobile/config.dart';
+import 'package:scity_mobile/pages/home/home_page.dart';
 
-Future<Map<String,dynamic>> handleLogin(username, password) async {
-  var jsonResp = await http.post(
-    Uri.parse('https://scity.herokuapp.com/authentication/api/login/'),
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json',
-    },
-    body: json.encode({
-      'username': username,
-      'password': password
-    })
-  );
-  var resp = jsonDecode(utf8.decode(jsonResp.bodyBytes));
-  return resp;
+void handleLogin(context, username, password) async {
+  final request = context.watch<CookieRequest>();
   
-  // return {
-  //   'status': 200,
-  //   'message': 'Login berhasil'
-  // };
+  final resp = await request.login("${AppConfig.apiUrl}authentication/api/login/", {
+    'username': username,
+    'password': password
+  });
+
+  if (request.loggedIn) {
+    Navigator.pushReplacement(
+      context, 
+      MaterialPageRoute(builder: (context) => const HomePage()),
+    );
+  }
+  else {
+    Fluttertoast.showToast(
+      msg: resp['message'],
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+    );
+  }
 }

@@ -149,27 +149,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 42,
                     child: TextButton(
                       onPressed: () async {
-                        if (password == confirmPassword) {
-                          Fluttertoast.showToast(
-                            msg: 'Konfirmasi password tidak cocok',
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                          );
-                        }
-                        Map<String,dynamic> resp = await handleRegister(username, password);
-                        if (resp['status'] >= 400) {
-                          Fluttertoast.showToast(
-                            msg: resp['message'],
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                          );
-                          return;
-                        }
-                        if (!mounted) return;
-                        Navigator.pushReplacement(
-                          context, 
-                          MaterialPageRoute(builder: (context) => const LoginPage()),
-                        );
+                        handleRegister(context, username, password, confirmPassword);
                       }, 
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(0x10,0xb9,0x81,1)),

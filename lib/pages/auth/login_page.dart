@@ -124,21 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 42,
                     child: TextButton(
                       onPressed: () async {
-                        Map<String,dynamic> resp = await handleLogin(username, password);
-                        if (resp['status'] >= 400) {
-                          Fluttertoast.showToast(
-                            msg: resp['message'],
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                          );
-                          return;
-                        }
-                        if (!mounted) return;
-                        context.read<AuthProvider>().setIsLoggedIn(true);
-                        Navigator.pushReplacement(
-                          context, 
-                          MaterialPageRoute(builder: (context) => const HomePage()),
-                        );
+                        handleLogin(context, username, password);
                       }, 
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(0x10,0xb9,0x81,1)),

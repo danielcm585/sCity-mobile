@@ -1,24 +1,14 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:scity_mobile/config.dart';
 
-Future<Map<String,dynamic>> handleRegister(username, password) async {
-  var formData = <String,dynamic>{};
-  formData['username'] = username;
-  formData['password'] = password;
+void handleRegister(context, username, password, confirmPassword) async {
+  final request = context.watch<CookieRequest>();
 
-  var jsonResp = await http.post(
-    Uri.parse('https://scity.herokuapp.com/authentication/api/register/'),
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json',
-    },
-    body: formData
-  );
-  var resp = jsonDecode(utf8.decode(jsonResp.bodyBytes));
-  return resp;
-
-  // return {
-  //   'status': 200,
-  //   'message': 'Register berhasil'
-  // };
+  final resp = await request.post("${AppConfig.apiUrl}/authentication/api/register/", {
+    'username': username,
+    'password1': password,
+    'password2': confirmPassword
+  });
+  
+  // TODO: What's next??
 }
