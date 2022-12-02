@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scity_mobile/components/drawer.dart';
 import 'package:scity_mobile/pages/auth/login_page.dart';
 import 'package:scity_mobile/utils/auth/handle_register.dart';
@@ -147,17 +148,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     width: double.maxFinite,
                     height: 42,
                     child: TextButton(
-                      onPressed: () {
-                        // TODO: Validate input
-                        Map<String,dynamic> resp = handleRegister();
-                        if (resp['status'] >= 400) {
-                          // TODO: Show error message
-                          return;
-                        }
-                        Navigator.pushReplacement(
-                          context, 
-                          MaterialPageRoute(builder: (context) => const LoginPage()),
-                        );
+                      onPressed: () async {
+                        handleRegister(context, username, password, confirmPassword);
                       }, 
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(0x10,0xb9,0x81,1)),
