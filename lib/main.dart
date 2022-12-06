@@ -5,7 +5,6 @@ import 'package:scity_mobile/colors.dart';
 import 'package:scity_mobile/pages/home/home_page.dart';
 import 'package:scity_mobile/providers/auth_provider.dart';
 
-
 void main() {
   runApp(
     MultiProvider(
