@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:scity_mobile/pages/auth/login_page.dart';
 import 'package:scity_mobile/pages/auth/register_page.dart';
@@ -21,7 +22,7 @@ class _AppDrawerState extends State<AppDrawer> {
       child: Column(
         children: [
           const SizedBox(height: 80),
-          context.watch<AuthProvider>().isLoggedIn ? 
+          context.watch<CookieRequest>().loggedIn ? 
             Column(
               children: [
                 ListTile(
@@ -42,21 +43,8 @@ class _AppDrawerState extends State<AppDrawer> {
                     )
                   ),
                   onTap: () async {
-                    Map<String,dynamic> resp = await handleLogout();
-                    if (resp['status'] >= 400) {
-                      Fluttertoast.showToast(
-                        msg: resp['message'],
-                        backgroundColor: Colors.red,
-                        textColor: Colors.white,
-                      );
-                      return;
-                    }
-                    if (!mounted) return;
-                    context.read<AuthProvider>().setIsLoggedIn(false);
-                    Navigator.pushReplacement(
-                      context, 
-                      MaterialPageRoute(builder: (context) => const LoginPage()),
-                    );
+                    final request = context.read<CookieRequest>();
+                    handleLogout(context, request);
                   }
                 ),
               ],

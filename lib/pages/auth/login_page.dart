@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scity_mobile/components/drawer.dart';
@@ -124,7 +125,8 @@ class _LoginPageState extends State<LoginPage> {
                     height: 42,
                     child: TextButton(
                       onPressed: () async {
-                        handleLogin(context, username, password);
+                        final request = context.read<CookieRequest>();
+                        handleLogin(context, request, username, password);
                       }, 
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(0x10,0xb9,0x81,1)),

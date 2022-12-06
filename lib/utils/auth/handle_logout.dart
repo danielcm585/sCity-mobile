@@ -1,19 +1,27 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:scity_mobile/config.dart';
+import 'package:scity_mobile/pages/home/home_page.dart';
 
-Future<Map<String,dynamic>> handleLogout() async {
-  var jsonResp = await http.post(
-    Uri.parse('https://scity.herokuapp.com/authentication/api/logout/'),
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json',
-    }
-  );
-  var resp = jsonDecode(utf8.decode(jsonResp.bodyBytes));
-  return resp;
+void handleLogout(context, request) async {
+  final resp = await request.logout("${AppConfig.apiUrl}authentication/api/logout/");
 
-  // return {
-  //   'status': 200,
-  //   'message': 'Logout berhasil'
-  // };
+  if (resp['status']) {
+    Fluttertoast.showToast(
+      msg: resp['message'],
+      backgroundColor: Colors.green,
+      textColor: Colors.white,
+    );
+    Navigator.pushReplacement(
+      context, 
+      MaterialPageRoute(builder: (context) => const HomePage()),
+    );
+  }
+  else {
+    Fluttertoast.showToast(
+      msg: resp['message'],
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+    );
+  }
 }
