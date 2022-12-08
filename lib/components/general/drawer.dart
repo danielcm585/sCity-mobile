@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:scity_mobile/pages/auth/login_page.dart';
 import 'package:scity_mobile/pages/auth/register_page.dart';
 import 'package:scity_mobile/pages/tender/tender_main_page.dart';
-import 'package:scity_mobile/providers/auth_provider.dart';
 import 'package:scity_mobile/utils/auth/handle_logout.dart';
+import 'package:scity_mobile/providers/cookie_request_provider.dart';
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({super.key});

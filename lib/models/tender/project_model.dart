@@ -21,16 +21,16 @@ class Project {
   bool isClosed;
   DateTime createdAt;
   DateTime editedAt;
-  DateTime closedAt;
+  DateTime? closedAt;
 
   factory Project.fromJson(Map<String, dynamic> json) => Project(
     id: json['id'],
     title: json['title'],
     description: json['description'],
     isClosed: json['is_closed'],
-    createdAt: json['created_at'],
-    editedAt: json['edited_at'],
-    closedAt: json['closed_at'],
+    createdAt: DateTime.parse(json['created_at']),
+    editedAt: DateTime.parse(json['edited_at']),
+    closedAt: (json['closed_at'] != null ? DateTime.parse(json['closed_at']) : null),
   );
 
   Map<String, dynamic> toJson() => {

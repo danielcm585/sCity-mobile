@@ -1,7 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:scity_mobile/components/drawer.dart';
+import 'package:scity_mobile/components/general/drawer.dart';
 import 'package:scity_mobile/pages/auth/login_page.dart';
+import 'package:scity_mobile/pages/tender/tender_main_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -122,10 +123,12 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(height: 14),
                       OutlinedButton(
                         onPressed: () {
-                          
+                          Navigator.pushReplacement(
+                            context, 
+                            MaterialPageRoute(builder: (context) => const TenderMainPage()),
+                          );
                         },
                         style: ButtonStyle(
-                          
                           backgroundColor: MaterialStateProperty.all(Colors.white),
                           foregroundColor: MaterialStateProperty.all(const Color.fromRGBO(0x10,0xb9,0x81,1)),
                           shape: MaterialStateProperty.all(

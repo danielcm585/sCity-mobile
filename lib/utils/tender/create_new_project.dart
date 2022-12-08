@@ -1,23 +1,24 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scity_mobile/config.dart';
-import 'package:scity_mobile/pages/home/home_page.dart';
+import 'package:scity_mobile/pages/tender/tender_main_page.dart';
 
-void handleLogin(context, request, username, password) async {
-  final resp = await request.login("${AppConfig.apiUrl}authentication/api/login/", {
-    'username': username,
-    'password': password
+void createNewProject(context, request, title, description) async {
+  final resp = await request.post("${AppConfig.apiUrl}/tender/api/v2/project/", {
+    'title': title,
+    'description': description
   });
 
-  if (request.loggedIn) {
+  if (resp['status'] < 400) {
     Fluttertoast.showToast(
-      msg: 'Selamat datang kembali',
+      msg: 'Projek baru berhasil disimpan',
       backgroundColor: Colors.green,
       textColor: Colors.white,
     );
     Navigator.pushReplacement(
       context, 
-      MaterialPageRoute(builder: (context) => const HomePage()),
+      MaterialPageRoute(builder: (context) => const TenderMainPage()),
     );
   }
   else {

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:scity_mobile/components/drawer.dart';
+import 'package:scity_mobile/components/general/drawer.dart';
 import 'package:scity_mobile/pages/auth/login_page.dart';
 import 'package:scity_mobile/utils/auth/handle_register.dart';
+import 'package:scity_mobile/providers/cookie_request_provider.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});

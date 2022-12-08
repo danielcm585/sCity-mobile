@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:scity_mobile/components/drawer.dart';
+import 'package:scity_mobile/components/general/drawer.dart';
 import 'package:scity_mobile/pages/auth/register_page.dart';
-import 'package:scity_mobile/pages/home/home_page.dart';
-import 'package:scity_mobile/providers/auth_provider.dart';
 import 'package:scity_mobile/utils/auth/handle_login.dart';
+import 'package:scity_mobile/providers/cookie_request_provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

@@ -3,10 +3,9 @@ import 'package:http/http.dart' as http;
 import 'package:scity_mobile/config.dart';
 import 'package:scity_mobile/models/tender/project_model.dart';
 
-Future<List<Project>> fetchProjects() async {
-  var url = Uri.parse("${AppConfig.apiUrl}tender/api/project/");
+Future<List<Project>> fetchAllProjects() async {
   var resp = await http.get(
-    url,
+    Uri.parse("${AppConfig.apiUrl}tender/api/project/"),
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
