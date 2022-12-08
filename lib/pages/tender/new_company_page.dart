@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
+import 'package:scity_mobile/providers/cookie_request_provider.dart';
 import 'package:scity_mobile/utils/tender/create_new_company.dart';
 
 class NewCompanyPage extends StatefulWidget {
@@ -117,7 +119,8 @@ class _NewCompanyPageState extends State<NewCompanyPage> {
             )
           ),
           onPressed: () {
-            createNewCompany(name, ptName, npwp);
+            final request = context.read<CookieRequest>();
+            createNewCompany(context, request, name, ptName, npwp);
           },
           child: const Text(
             'Save',

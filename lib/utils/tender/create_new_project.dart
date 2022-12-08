@@ -1,8 +1,6 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scity_mobile/config.dart';
-import 'package:scity_mobile/pages/tender/tender_main_page.dart';
 
 void createNewProject(context, request, title, description) async {
   final resp = await request.post("${AppConfig.apiUrl}/tender/api/v2/project/", {
@@ -16,10 +14,7 @@ void createNewProject(context, request, title, description) async {
       backgroundColor: Colors.green,
       textColor: Colors.white,
     );
-    Navigator.pushReplacement(
-      context, 
-      MaterialPageRoute(builder: (context) => const TenderMainPage()),
-    );
+    Navigator.pop(context);
   }
   else {
     Fluttertoast.showToast(
