@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:scity_mobile/components/drawer.dart';
+import 'package:provider/provider.dart';
+import 'package:scity_mobile/components/general/drawer.dart';
 import 'package:scity_mobile/pages/auth/login_page.dart';
 import 'package:scity_mobile/utils/auth/handle_register.dart';
+import 'package:scity_mobile/providers/cookie_request_provider.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -149,7 +150,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 42,
                     child: TextButton(
                       onPressed: () async {
-                        handleRegister(context, username, password, confirmPassword);
+                        final request = context.read<CookieRequest>();
+                        handleRegister(context, request, username, password, confirmPassword);
                       }, 
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(0x10,0xb9,0x81,1)),
