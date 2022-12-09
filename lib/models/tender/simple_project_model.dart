@@ -1,12 +1,11 @@
 import 'dart:convert';
-import 'package:scity_mobile/models/tender/registrant_model.dart';
 
-List<Project> projectFromJson(String str) => List<Project>.from(json.decode(str).map((x) => Project.fromJson(x)));
+List<SimpleProject> projectFromJson(String str) => List<SimpleProject>.from(json.decode(str).map((x) => SimpleProject.fromJson(x)));
 
-// String projectToJson(List<Project> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+// String projectToJson(List<SimpleProject> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Project {
-  Project({
+class SimpleProject {
+  SimpleProject({
     required this.id,
     required this.title,
     required this.description,
@@ -14,7 +13,6 @@ class Project {
     required this.createdAt,
     required this.editedAt,
     required this.closedAt,
-    required this.registrants,
   });
 
   int id;
@@ -24,9 +22,8 @@ class Project {
   DateTime createdAt;
   DateTime editedAt;
   DateTime? closedAt;
-  List<Registrant> registrants;
 
-  factory Project.fromJson(Map<String, dynamic> json) => Project(
+  factory SimpleProject.fromJson(Map<String, dynamic> json) => SimpleProject(
     id: json['id'],
     title: json['title'],
     description: json['description'],
@@ -34,7 +31,6 @@ class Project {
     createdAt: DateTime.parse(json['created_at']),
     editedAt: DateTime.parse(json['edited_at']),
     closedAt: (json['closed_at'] != null ? DateTime.parse(json['closed_at']) : null),
-    registrants: json['registrants'].map<Registrant>((data) => Registrant.fromJson(data)).toList(),
   );
 
   // Map<String, dynamic> toJson() => {

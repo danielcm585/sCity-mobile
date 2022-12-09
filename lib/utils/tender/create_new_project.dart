@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scity_mobile/config.dart';
-import 'package:scity_mobile/pages/home/home_page.dart';
 
-void handleLogout(context, request) async {
-  final resp = await request.logout("${AppConfig.apiUrl}authentication/api/logout/");
+void createNewProject(context, request, title, description) async {
+  final resp = await request.post("${AppConfig.apiUrl}/tender/api/v2/project/", {
+    'title': title,
+    'description': description
+  });
 
-  if (resp['status']) {
+  if (resp['status'] < 400) {
     Fluttertoast.showToast(
-      msg: resp['message'],
+      msg: 'Projek baru berhasil disimpan',
       backgroundColor: Colors.green,
       textColor: Colors.white,
     );
-    Navigator.pushReplacement(
-      context, 
-      MaterialPageRoute(builder: (context) => const HomePage()),
-    );
+    Navigator.pop(context);
   }
   else {
     Fluttertoast.showToast(

@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scity_mobile/config.dart';
-import 'package:scity_mobile/pages/home/home_page.dart';
 
-void handleLogout(context, request) async {
-  final resp = await request.logout("${AppConfig.apiUrl}authentication/api/logout/");
+void createNewCompany(context, request, name, ptName, npwp) async {
+  final resp = await request.post("${AppConfig.apiUrl}/tender/api/v2/company/", {
+    'company_name': name,
+    'pt_name': ptName,
+    'npwp': npwp
+  });
 
-  if (resp['status']) {
+  if (resp['status'] < 400) {
     Fluttertoast.showToast(
-      msg: resp['message'],
+      msg: 'Perusahaan baru berhasil disimpan',
       backgroundColor: Colors.green,
       textColor: Colors.white,
     );
-    Navigator.pushReplacement(
-      context, 
-      MaterialPageRoute(builder: (context) => const HomePage()),
-    );
+    Navigator.pop(context);
   }
   else {
     Fluttertoast.showToast(

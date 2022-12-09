@@ -1,28 +1,29 @@
 import 'dart:convert';
-import 'package:scity_mobile/models/tender/company_model.dart';
 
-List<Registrant> registrantFromJson(String str) => List<Registrant>.from(json.decode(str).map((x) => Registrant.fromJson(x)));
+import 'package:scity_mobile/models/tender/simple_project_model.dart';
 
-// String registrantToJson(List<Registrant> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+List<SimpleRegistrant> registrantFromJson(String str) => List<SimpleRegistrant>.from(json.decode(str).map((x) => SimpleRegistrant.fromJson(x)));
 
-class Registrant {
-  Registrant({
+// String registrantToJson(List<SimpleRegistrant> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+class SimpleRegistrant {
+  SimpleRegistrant({
     required this.id,
-    required this.company,
+    required this.project,
     required this.offerPrice,
     required this.registredAt,
     required this.isChosen,
   });
 
   int id;
-  Company company;
+  SimpleProject project;
   int offerPrice;
   DateTime registredAt;
   DateTime isChosen;
 
-  factory Registrant.fromJson(Map<String, dynamic> json) => Registrant(
+  factory SimpleRegistrant.fromJson(Map<String, dynamic> json) => SimpleRegistrant(
     id: json['id'],
-    company: json['company'],
+    project: json['project'],
     offerPrice: json['offer_price'],
     registredAt: DateTime.parse(json['registred_at']),
     isChosen: json['is_chosen'],
