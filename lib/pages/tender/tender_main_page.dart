@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
 import 'package:scity_mobile/components/tender/company_item.dart';
@@ -6,8 +7,8 @@ import 'package:scity_mobile/pages/tender/all_companies_page.dart';
 import 'package:scity_mobile/pages/tender/all_project_page.dart';
 import 'package:scity_mobile/pages/tender/new_company_page.dart';
 import 'package:scity_mobile/pages/tender/new_project_page.dart';
-import 'package:scity_mobile/utils/tender/fetch_preview_companies.dart';
-import 'package:scity_mobile/utils/tender/fetch_preview_projects.dart';
+import 'package:scity_mobile/utils/tender/fetch_all_companies.dart';
+import 'package:scity_mobile/utils/tender/fetch_all_projects.dart';
 
 class TenderMainPage extends StatefulWidget {
   const TenderMainPage({super.key});
@@ -73,7 +74,7 @@ class _TenderMainPageState extends State<TenderMainPage> {
               ),
               const SizedBox(height: 10),
               FutureBuilder(
-                future: fetchPreviewProjects(),
+                future: fetchAllProjects(),
                 builder: (context, AsyncSnapshot snapshot) {
                   if (snapshot.data == null) {
                     return const Center(
@@ -96,7 +97,9 @@ class _TenderMainPageState extends State<TenderMainPage> {
                         padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        children: snapshot.data!.map<Widget>((data) => ProjectItem(data: data)).toList(),
+                        children: snapshot.data!
+                          .sublist(0, min(int.parse(snapshot.data!.length.toString()),4))
+                          .map<Widget>((data) => ProjectItem(data: data)).toList(),
                       ),
                       const SizedBox(height: 4),
                       Row(
@@ -156,7 +159,7 @@ class _TenderMainPageState extends State<TenderMainPage> {
               ),
               const SizedBox(height: 10),
               FutureBuilder(
-                future: fetchPreviewCompanies(),
+                future: fetchAllCompanies(),
                 builder: (context, AsyncSnapshot snapshot) {
                   if (snapshot.data == null) {
                     return const Center(
@@ -179,7 +182,9 @@ class _TenderMainPageState extends State<TenderMainPage> {
                         padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        children: snapshot.data!.map<Widget>((data) => CompanyItem(data: data)).toList(),
+                        children: snapshot.data!
+                          .sublist(0, min(int.parse(snapshot.data!.length.toString()),4))
+                          .map<Widget>((data) => CompanyItem(data: data)).toList(),
                       ),
                       const SizedBox(height: 4),
                       Row(

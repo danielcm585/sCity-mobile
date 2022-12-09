@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
 import 'package:scity_mobile/components/tender/project_item.dart';
 import 'package:scity_mobile/pages/tender/new_project_page.dart';
-import 'package:scity_mobile/pages/tender/tender_main_page.dart';
 import 'package:scity_mobile/utils/tender/fetch_all_projects.dart';
 
 class AllProjectPage extends StatefulWidget {

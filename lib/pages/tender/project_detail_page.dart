@@ -76,15 +76,21 @@ class ProjectDetailPageState extends State<ProjectDetailPage> {
               )
             ),
             const SizedBox(height: 6),
-            GridView.count(
-              crossAxisCount: 2,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              childAspectRatio: 10/5,
-              padding: EdgeInsets.zero,
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              children: widget.data.registrants.map<Widget>((data) => RegistrantItem(data: data)).toList(),
+            Text("${widget.data.registrants!.length} registrants"),
+            const SizedBox(height: 10),
+            (
+              widget.data.registrants!.isNotEmpty ? 
+                GridView.count(
+                  crossAxisCount: 1,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: 30/5,
+                  padding: EdgeInsets.zero,
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  children: widget.data.registrants!.map<Widget>((data) => RegistrantItem(data: data)).toList(),
+                ) :
+                Container()
             )
           ],
         )
@@ -106,7 +112,7 @@ class ProjectDetailPageState extends State<ProjectDetailPage> {
           onPressed: () {
             Navigator.push(
               context, 
-              MaterialPageRoute(builder: (context) => const NewRegistrantPage()),
+              MaterialPageRoute(builder: (context) => NewRegistrantPage(project: widget.data)),
             );
             // final request = context.read<CookieRequest>();
             // createNewRegistrant(context, request);
