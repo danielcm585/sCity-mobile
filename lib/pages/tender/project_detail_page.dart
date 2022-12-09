@@ -6,16 +6,23 @@ import 'package:scity_mobile/pages/tender/new_registrant_page.dart';
 
 class ProjectDetailPage extends StatefulWidget {
   const ProjectDetailPage({super.key,
-    required this.data
+    required this.data,
+    required this.refresh,
   });
 
   final Project data;
+  final VoidCallback refresh;
 
   @override
   State<ProjectDetailPage> createState() => ProjectDetailPageState();
 }
 
 class ProjectDetailPageState extends State<ProjectDetailPage> {
+  void refresh() {
+    widget.refresh();
+    setState(() { });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,10 +119,8 @@ class ProjectDetailPageState extends State<ProjectDetailPage> {
           onPressed: () {
             Navigator.push(
               context, 
-              MaterialPageRoute(builder: (context) => NewRegistrantPage(project: widget.data)),
+              MaterialPageRoute(builder: (context) => NewRegistrantPage(project: widget.data, refresh: refresh)),
             );
-            // final request = context.read<CookieRequest>();
-            // createNewRegistrant(context, request);
           },
           child: const Text(
             'Register',

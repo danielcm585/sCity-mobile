@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
 import 'package:scity_mobile/components/tender/company_item.dart';
@@ -12,6 +14,11 @@ class AllCompaniesPage extends StatefulWidget {
 }
 
 class _AllCompaniesPageState extends State<AllCompaniesPage> {
+  void refresh() {
+    log('refresh all companies');
+    setState(() { });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +71,7 @@ class _AllCompaniesPageState extends State<AllCompaniesPage> {
                     onPressed: () {
                       Navigator.push(
                         context, 
-                        MaterialPageRoute(builder: (context) => const NewCompanyPage()),
+                        MaterialPageRoute(builder: (context) => NewCompanyPage(refresh: refresh)),
                       );
                     },
                     style: ButtonStyle(
@@ -107,7 +114,7 @@ class _AllCompaniesPageState extends State<AllCompaniesPage> {
                         padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        children: snapshot.data!.map<Widget>((data) => CompanyItem(data: data)).toList(),
+                        children: snapshot.data!.map<Widget>((data) => CompanyItem(data: data, refresh: refresh)).toList(),
                       ),
                     ]
                   );

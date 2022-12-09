@@ -5,9 +5,11 @@ import 'package:scity_mobile/pages/tender/company_detail_page.dart';
 class CompanyItem extends StatefulWidget {
   const CompanyItem({super.key,
     required this.data,
+    required this.refresh,
   });
 
   final Company data;
+  final VoidCallback refresh;
 
   @override
   State<CompanyItem> createState() => _CompanyItemState();
@@ -20,7 +22,7 @@ class _CompanyItemState extends State<CompanyItem> {
       onTap: () {
         Navigator.push(
           context, 
-          MaterialPageRoute(builder: (context) => CompanyDetailPage(data: widget.data)),
+          MaterialPageRoute(builder: (context) => CompanyDetailPage(data: widget.data, refresh: widget.refresh)),
         );
       },
       child: Container(

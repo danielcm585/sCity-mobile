@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scity_mobile/config.dart';
 
-Future<void> createNewRegistrant(context, request, projectId, companyId, offerPrice) async {
+Future<void> createNewRegistrant(context, request, refresh, projectId, companyId, offerPrice) async {
   final resp = await request.post("${AppConfig.apiUrl}tender/api/v2/registrant/${projectId.toString()}/", {
     'company_id': companyId.toString(),
     'offer_price': offerPrice.toString()
@@ -15,6 +15,7 @@ Future<void> createNewRegistrant(context, request, projectId, companyId, offerPr
       textColor: Colors.white,
     );
     Navigator.pop(context);
+    refresh();
   }
   else {
     Fluttertoast.showToast(

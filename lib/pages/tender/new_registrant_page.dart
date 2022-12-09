@@ -10,15 +10,22 @@ import 'package:scity_mobile/utils/tender/fetch_my_companies.dart';
 class NewRegistrantPage extends StatefulWidget {
   const NewRegistrantPage({super.key,
     required this.project,
+    required this.refresh,
   });
 
   final Project project;
+  final VoidCallback refresh;
 
   @override
   State<NewRegistrantPage> createState() => _NewRegistrantPageState();
 }
 
 class _NewRegistrantPageState extends State<NewRegistrantPage> {
+  void refresh() {
+    widget.refresh();
+    setState(() { });
+  }
+
   final _formKey = GlobalKey<FormState>();
 
   int? companyId;
@@ -136,7 +143,7 @@ class _NewRegistrantPageState extends State<NewRegistrantPage> {
           ),
           onPressed: () {
             final request = context.read<CookieRequest>();
-            createNewRegistrant(context, request, widget.project.id, companyId, offeredPrice);
+            createNewRegistrant(context, request, refresh, widget.project.id, companyId, offeredPrice);
           },
           child: const Text(
             'Register',

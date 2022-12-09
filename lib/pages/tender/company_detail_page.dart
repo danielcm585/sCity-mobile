@@ -6,15 +6,22 @@ import 'package:scity_mobile/models/tender/company_model.dart';
 class CompanyDetailPage extends StatefulWidget {
   const CompanyDetailPage({super.key,
     required this.data,
+    required this.refresh,
   });
 
   final Company data;
+  final VoidCallback refresh;
 
   @override
   State<CompanyDetailPage> createState() => _CompanyDetailPageState();
 }
 
 class _CompanyDetailPageState extends State<CompanyDetailPage> {
+  void refresh() {
+    widget.refresh();
+    setState(() { });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,16 +94,20 @@ class _CompanyDetailPageState extends State<CompanyDetailPage> {
             const SizedBox(height: 6),
             Text("${widget.data.projects!.length} projects"),
             const SizedBox(height: 6),
-            GridView.count(
-              crossAxisCount: 1,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              childAspectRatio: 30/5,
-              padding: EdgeInsets.zero,
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              children: widget.data.projects!.map<Widget>((data) => RegistrantItem(data: data)).toList(),
-            )
+            (
+              widget.data.projects!.isNotEmpty ?
+                GridView.count(
+                  crossAxisCount: 1,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: 30/5,
+                  padding: EdgeInsets.zero,
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  children: widget.data.projects!.map<Widget>((data) => RegistrantItem(data: data)).toList(),
+                ) :
+                Container()
+            ),
           ],
         )
       ),

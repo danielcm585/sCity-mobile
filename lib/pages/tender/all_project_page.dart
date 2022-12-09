@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
 import 'package:scity_mobile/components/tender/project_item.dart';
@@ -12,6 +13,11 @@ class AllProjectPage extends StatefulWidget {
 }
 
 class _AllProjectPageState extends State<AllProjectPage> {
+  void refresh() {
+    log('refresh all projects');
+    setState(() { });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +70,7 @@ class _AllProjectPageState extends State<AllProjectPage> {
                     onPressed: () {
                       Navigator.push(
                         context, 
-                        MaterialPageRoute(builder: (context) => const NewProjectPage()),
+                        MaterialPageRoute(builder: (context) => NewProjectPage(refresh: refresh)),
                       );
                     },
                     style: ButtonStyle(
@@ -107,7 +113,7 @@ class _AllProjectPageState extends State<AllProjectPage> {
                         padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        children: snapshot.data!.map<Widget>((data) => ProjectItem(data: data)).toList(),
+                        children: snapshot.data!.map<Widget>((data) => ProjectItem(data: data, refresh: refresh)).toList(),
                       ),
                     ]
                   );

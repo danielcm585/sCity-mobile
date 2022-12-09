@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
 import 'package:scity_mobile/components/tender/company_item.dart';
@@ -18,6 +19,11 @@ class TenderMainPage extends StatefulWidget {
 }
 
 class _TenderMainPageState extends State<TenderMainPage> {
+  void refresh() {
+    dev.log('refresh main page');
+    setState(() { });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +60,7 @@ class _TenderMainPageState extends State<TenderMainPage> {
                     onPressed: () {
                       Navigator.push(
                         context, 
-                        MaterialPageRoute(builder: (context) => const NewProjectPage()),
+                        MaterialPageRoute(builder: (context) => NewProjectPage(refresh: refresh)),
                       );
                     },
                     style: ButtonStyle(
@@ -99,7 +105,7 @@ class _TenderMainPageState extends State<TenderMainPage> {
                         shrinkWrap: true,
                         children: snapshot.data!
                           .sublist(0, min(int.parse(snapshot.data!.length.toString()),4))
-                          .map<Widget>((data) => ProjectItem(data: data)).toList(),
+                          .map<Widget>((data) => ProjectItem(data: data, refresh: refresh)).toList(),
                       ),
                       const SizedBox(height: 4),
                       Row(
@@ -139,7 +145,7 @@ class _TenderMainPageState extends State<TenderMainPage> {
                     onPressed: () {
                       Navigator.push(
                         context, 
-                        MaterialPageRoute(builder: (context) => const NewCompanyPage()),
+                        MaterialPageRoute(builder: (context) => NewCompanyPage(refresh: refresh)),
                       );
                     }, 
                     style: ButtonStyle(
@@ -184,7 +190,7 @@ class _TenderMainPageState extends State<TenderMainPage> {
                         shrinkWrap: true,
                         children: snapshot.data!
                           .sublist(0, min(int.parse(snapshot.data!.length.toString()),4))
-                          .map<Widget>((data) => CompanyItem(data: data)).toList(),
+                          .map<Widget>((data) => CompanyItem(data: data, refresh: refresh)).toList(),
                       ),
                       const SizedBox(height: 4),
                       Row(

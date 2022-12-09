@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scity_mobile/config.dart';
 
-void createNewProject(context, request, title, description) async {
+void createNewProject(context, request, refresh, title, description) async {
   final resp = await request.post("${AppConfig.apiUrl}/tender/api/v2/project/", {
     'title': title,
     'description': description
@@ -15,6 +15,7 @@ void createNewProject(context, request, title, description) async {
       textColor: Colors.white,
     );
     Navigator.pop(context);
+    refresh();
   }
   else {
     Fluttertoast.showToast(

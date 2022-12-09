@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scity_mobile/config.dart';
 
-void createNewCompany(context, request, name, ptName, npwp) async {
+void createNewCompany(context, request, refresh, name, ptName, npwp) async {
   final resp = await request.post("${AppConfig.apiUrl}/tender/api/v2/company/", {
     'company_name': name,
     'pt_name': ptName,
@@ -16,6 +16,7 @@ void createNewCompany(context, request, name, ptName, npwp) async {
       textColor: Colors.white,
     );
     Navigator.pop(context);
+    refresh();
   }
   else {
     Fluttertoast.showToast(
