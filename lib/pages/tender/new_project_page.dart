@@ -51,7 +51,7 @@ class _NewProjectPageState extends State<NewProjectPage> {
                   ),
                   const SizedBox(width: 4),
                   const Text(
-                    'Projects',
+                    'New Project',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -59,7 +59,7 @@ class _NewProjectPageState extends State<NewProjectPage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 14),
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Title',

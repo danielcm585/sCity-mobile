@@ -37,6 +37,30 @@ class _NewCompanyPageState extends State<NewCompanyPage> {
           key: _formKey,
           child: Column(
             children: [
+              Row(
+                children: [
+                  SizedBox(
+                    height: 40,
+                    width: 30,
+                    child: IconButton(
+                      iconSize: 20,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      }, 
+                      icon: const Icon(Icons.arrow_back_ios),
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  const Text(
+                    'New Company',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 14),
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Name',

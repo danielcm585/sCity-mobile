@@ -18,7 +18,7 @@ class _AllProjectPageState extends State<AllProjectPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Tender',
+          'All Projects',
           style: TextStyle(
             color: Colors.white
           )
@@ -46,10 +46,7 @@ class _AllProjectPageState extends State<AllProjectPage> {
                         child: IconButton(
                           iconSize: 20,
                           onPressed: () {
-                            Navigator.pushReplacement(
-                              context, 
-                              MaterialPageRoute(builder: (context) => const TenderMainPage()),
-                            );
+                            Navigator.pop(context);
                           }, 
                           icon: const Icon(Icons.arrow_back_ios),
                         ),
@@ -107,7 +104,7 @@ class _AllProjectPageState extends State<AllProjectPage> {
                         crossAxisCount: 2,
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10,
-                        childAspectRatio: 20/11,
+                        childAspectRatio: 20/10,
                         padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,

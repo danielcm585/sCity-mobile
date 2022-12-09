@@ -92,7 +92,7 @@ class _TenderMainPageState extends State<TenderMainPage> {
                         crossAxisCount: 2,
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10,
-                        childAspectRatio: 10/5,
+                        childAspectRatio: 20/10,
                         padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
@@ -105,7 +105,7 @@ class _TenderMainPageState extends State<TenderMainPage> {
                           Container(),
                           TextButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                 context, 
                                 MaterialPageRoute(builder: (context) => const AllProjectPage()),
                               );
@@ -154,6 +154,7 @@ class _TenderMainPageState extends State<TenderMainPage> {
                   ),
                 ]
               ),
+              const SizedBox(height: 10),
               FutureBuilder(
                 future: fetchPreviewCompanies(),
                 builder: (context, AsyncSnapshot snapshot) {
@@ -163,18 +164,18 @@ class _TenderMainPageState extends State<TenderMainPage> {
                     );
                   }
                   if (!snapshot.hasData) {
-                    return const Text("0 projects");
+                    return const Text("0 companies");
                   }
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("${snapshot.data!.length} projects"),
+                      Text("${snapshot.data!.length} companies"),
                       const SizedBox(height: 6),
                       GridView.count(
                         crossAxisCount: 2,
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10,
-                        childAspectRatio: 10/5,
+                        childAspectRatio: 20/10,
                         padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
@@ -187,7 +188,7 @@ class _TenderMainPageState extends State<TenderMainPage> {
                           Container(),
                           TextButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                 context, 
                                 MaterialPageRoute(builder: (context) => const AllCompaniesPage()),
                               );
@@ -196,7 +197,6 @@ class _TenderMainPageState extends State<TenderMainPage> {
                               'All Companies >'
                             )
                           )
-
                         ],
                       )
                     ]

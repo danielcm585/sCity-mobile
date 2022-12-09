@@ -47,12 +47,14 @@ class _ProjectItemState extends State<ProjectItem> {
           children: [
             Text(
               widget.data.title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               )
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 8),
             Text(
               widget.data.description,
               maxLines: 2,
