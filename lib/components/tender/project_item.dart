@@ -5,11 +5,9 @@ import 'package:scity_mobile/pages/tender/project_detail_page.dart';
 class ProjectItem extends StatefulWidget {
   const ProjectItem({super.key,
     required this.data,
-    required this.refresh,
   });
 
   final Project data;
-  final VoidCallback refresh;
 
   @override
   State<ProjectItem> createState() => _ProjectItemState();
@@ -22,7 +20,7 @@ class _ProjectItemState extends State<ProjectItem> {
       onTap: () {
         Navigator.push(
           context, 
-          MaterialPageRoute(builder: (context) => ProjectDetailPage(data: widget.data, refresh: widget.refresh)),
+          MaterialPageRoute(builder: (context) => ProjectDetailPage(data: widget.data)),
         );
       },
       child: Container(

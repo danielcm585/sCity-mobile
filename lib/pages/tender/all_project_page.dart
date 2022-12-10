@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
 import 'package:scity_mobile/components/tender/project_item.dart';
@@ -14,7 +13,6 @@ class AllProjectPage extends StatefulWidget {
 
 class _AllProjectPageState extends State<AllProjectPage> {
   void refresh() {
-    log('refresh all projects');
     setState(() { });
   }
 
@@ -113,7 +111,7 @@ class _AllProjectPageState extends State<AllProjectPage> {
                         padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        children: snapshot.data!.map<Widget>((data) => ProjectItem(data: data, refresh: refresh)).toList(),
+                        children: snapshot.data!.map<Widget>((data) => ProjectItem(data: data)).toList(),
                       ),
                     ]
                   );

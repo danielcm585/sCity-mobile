@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
 import 'package:scity_mobile/components/tender/company_item.dart';
@@ -15,7 +13,6 @@ class AllCompaniesPage extends StatefulWidget {
 
 class _AllCompaniesPageState extends State<AllCompaniesPage> {
   void refresh() {
-    log('refresh all companies');
     setState(() { });
   }
 
@@ -114,7 +111,7 @@ class _AllCompaniesPageState extends State<AllCompaniesPage> {
                         padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        children: snapshot.data!.map<Widget>((data) => CompanyItem(data: data, refresh: refresh)).toList(),
+                        children: snapshot.data!.map<Widget>((data) => CompanyItem(data: data)).toList(),
                       ),
                     ]
                   );
