@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scity_mobile/config.dart';
 
-void chooseRegistrant(request, registrantId, refresh) async {
+void chooseRegistrant(request, refresh, registrantId) async {
   final resp = await request.get("${AppConfig.apiUrl}tender/api/v2/registrant/choose/$registrantId/");
 
   if (resp['status'] < 400) {

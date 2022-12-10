@@ -8,9 +8,11 @@ import 'package:scity_mobile/utils/tender/choose_registrant.dart';
 class RegistrantItem extends StatefulWidget {
   const RegistrantItem({super.key,
     required this.data,
+    required this.refresh,
   });
 
   final Registrant data;
+  final VoidCallback refresh;
 
   @override
   State<RegistrantItem> createState() => _RegistrantItemState();
@@ -18,6 +20,7 @@ class RegistrantItem extends StatefulWidget {
 
 class _RegistrantItemState extends State<RegistrantItem> {
   void refresh() {
+    widget.refresh();
     setState(() { });
   }
 
@@ -103,7 +106,7 @@ class _RegistrantItemState extends State<RegistrantItem> {
           ElevatedButton(
             onPressed: () {
               final request = context.read<CookieRequest>();
-              chooseRegistrant(request, widget.data.id, refresh);
+              chooseRegistrant(request, refresh, widget.data.id);
             }, 
             style: ElevatedButton.styleFrom(
               shape: const CircleBorder()
