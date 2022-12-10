@@ -5,13 +5,22 @@ import 'package:scity_mobile/utils/tender/create_new_project.dart';
 import 'package:scity_mobile/providers/cookie_request_provider.dart';
 
 class NewProjectPage extends StatefulWidget {
-  const NewProjectPage({super.key});
+  const NewProjectPage({super.key,
+    required this.refresh,
+  });
+
+  final VoidCallback refresh;
 
   @override
   State<NewProjectPage> createState() => _NewProjectPageState();
 }
 
 class _NewProjectPageState extends State<NewProjectPage> {
+  void refresh() {
+    widget.refresh();
+    setState(() { });
+  }
+
   final _formKey = GlobalKey<FormState>();
 
   String title = '';
@@ -123,7 +132,7 @@ class _NewProjectPageState extends State<NewProjectPage> {
           ),
           onPressed: () {
             final request = context.read<CookieRequest>();
-            createNewProject(context, request, title, description);
+            createNewProject(context, request, refresh, title, description);
           },
           child: const Text(
             'Save',

@@ -4,7 +4,7 @@ import 'package:scity_mobile/pages/tender/project_detail_page.dart';
 
 class ProjectItem extends StatefulWidget {
   const ProjectItem({super.key,
-    required this.data
+    required this.data,
   });
 
   final Project data;

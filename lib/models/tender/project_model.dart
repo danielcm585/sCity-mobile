@@ -24,7 +24,7 @@ class Project {
   DateTime createdAt;
   DateTime editedAt;
   DateTime? closedAt;
-  List<Registrant> registrants;
+  List<Registrant>? registrants;
 
   factory Project.fromJson(Map<String, dynamic> json) => Project(
     id: json['id'],
@@ -34,7 +34,11 @@ class Project {
     createdAt: DateTime.parse(json['created_at']),
     editedAt: DateTime.parse(json['edited_at']),
     closedAt: (json['closed_at'] != null ? DateTime.parse(json['closed_at']) : null),
-    registrants: json['registrants'].map<Registrant>((data) => Registrant.fromJson(data)).toList(),
+    registrants: (
+      json['registrants'] != null ? 
+        json['registrants']!.map<Registrant>((data) => Registrant.fromJson(data)).toList() : 
+        null
+    ),
   );
 
   // Map<String, dynamic> toJson() => {
