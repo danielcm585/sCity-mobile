@@ -5,13 +5,22 @@ import 'package:scity_mobile/providers/cookie_request_provider.dart';
 import 'package:scity_mobile/utils/tender/create_new_company.dart';
 
 class NewCompanyPage extends StatefulWidget {
-  const NewCompanyPage({super.key});
+  const NewCompanyPage({super.key,
+    required this.refresh
+  });
+
+  final VoidCallback refresh;
 
   @override
   State<NewCompanyPage> createState() => _NewCompanyPageState();
 }
 
 class _NewCompanyPageState extends State<NewCompanyPage> {
+  void refresh() {
+    widget.refresh();
+    setState(() { });
+  }
+
   final _formKey = GlobalKey<FormState>();
 
   String name = '';
@@ -144,7 +153,7 @@ class _NewCompanyPageState extends State<NewCompanyPage> {
           ),
           onPressed: () {
             final request = context.read<CookieRequest>();
-            createNewCompany(context, request, name, ptName, npwp);
+            createNewCompany(context, request, refresh, name, ptName, npwp);
           },
           child: const Text(
             'Save',

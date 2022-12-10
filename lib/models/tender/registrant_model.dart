@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:scity_mobile/models/tender/company_model.dart';
+import 'package:scity_mobile/models/tender/project_model.dart';
 
 List<Registrant> registrantFromJson(String str) => List<Registrant>.from(json.decode(str).map((x) => Registrant.fromJson(x)));
 
@@ -9,22 +10,25 @@ class Registrant {
   Registrant({
     required this.id,
     required this.company,
+    required this.project,
     required this.offerPrice,
-    required this.registredAt,
+    required this.registeredAt,
     required this.isChosen,
   });
 
   int id;
-  Company company;
+  Company? company;
+  Project? project;
   int offerPrice;
-  DateTime registredAt;
-  DateTime isChosen;
+  DateTime registeredAt;
+  bool isChosen;
 
   factory Registrant.fromJson(Map<String, dynamic> json) => Registrant(
     id: json['id'],
-    company: json['company'],
+    company: (json['company'] != null ? Company.fromJson(json['company']) : null), 
+    project: (json['project'] != null ? Project.fromJson(json['project']) : null), 
     offerPrice: json['offer_price'],
-    registredAt: DateTime.parse(json['registred_at']),
+    registeredAt: DateTime.parse(json['registered_at']),
     isChosen: json['is_chosen'],
   );
 
@@ -32,7 +36,7 @@ class Registrant {
   //   'id': id,
   //   'company': company,
   //   'offer_price': offerPrice,
-  //   'registered_at': registredAt,
+  //   'registered_at': registeredAt,
   //   'is_chosen': isChosen,
   // };
 }
