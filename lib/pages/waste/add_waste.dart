@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
 import 'package:scity_mobile/models/waste/waste_model.dart';
+import 'package:provider/provider.dart';
+import 'package:scity_mobile/providers/cookie_request_provider.dart';
+import 'package:scity_mobile/utils/waste/create_new_waste.dart';
 
 class AddWastePage extends StatefulWidget {
   const AddWastePage({Key? key}) : super(key: key);
@@ -12,6 +15,7 @@ class AddWastePage extends StatefulWidget {
 }
 
 class _AddWasteState extends State<AddWastePage> {
+
   final _formKey = GlobalKey<FormState>();
   double weight = 0;
   String wasteType = 'Plastic';
@@ -35,19 +39,34 @@ class _AddWasteState extends State<AddWastePage> {
                   const SizedBox(
                 height: 12,
               ),
-              const Center(
+              Row(
+                children: [
+                  SizedBox(
+                    height: 40,
+                    width: 40,
+                    child: IconButton(
+                      iconSize: 25,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(Icons.arrow_back_ios),
+                    ),
+                  ),
+                  const Center(
                     child: Padding(
-                      padding: EdgeInsets.only(left: 0, right: 0),
+                      padding: EdgeInsets.only(left: 90.0, right: 20),
                       child:
                       Text(
                         "Price List",
                         style: TextStyle(
-                          fontSize: 25,
+                          fontSize: 30,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   ),
+                ],
+              ),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
@@ -167,11 +186,12 @@ class _AddWasteState extends State<AddWastePage> {
                                             leading: const Icon(Icons.scale),
                                             title: Row(
                                               children: [
-                                                Text('Weight: ${weight.round()}'),
+                                                Text('Weight: ${weight.round()} Kg'),
                                               ],
                                             ),
                                             subtitle: Slider(
                                               value: weight,
+                                              min: 0,
                                               max: 20,
                                               divisions: 20,
                                               label: weight.round().toString(),
@@ -195,30 +215,34 @@ class _AddWasteState extends State<AddWastePage> {
                                                 borderRadius: BorderRadius.circular(10),
                                               ),
                                               elevation: 15,
-                                             child: Container(
-                                               child: ListView(
-                                                 padding: const EdgeInsets.only(top: 20, bottom: 20),
-                                                   shrinkWrap: true,
-                                                 children: [
-                                                   Center(child: const Text('Informasi Data')),
-                                                   SizedBox(height: 20),
-                                                   Padding(
-                                                     padding: const EdgeInsets.all(8.0),
-                                                     child: Column(
-                                                       children: [
-                                                         Text('Waste Type: $wasteType'),
-                                                         Text('Weight: $weight'),
-                                                       ],
-                                                     ),
+                                             child: ListView(
+                                               padding: const EdgeInsets.only(top: 20, bottom: 20),
+                                                 shrinkWrap: true,
+                                               children: [
+                                                 const Center(child: Text('Data Confirmation : ')),
+                                                 const SizedBox(height: 20),
+                                                 Padding(
+                                                   padding: const EdgeInsets.all(8.0),
+                                                   child: Column(
+                                                     children: [
+                                                       Text('Waste Type: $wasteType'),
+                                                       Text('Weight: $weight'),
+                                                     ],
                                                    ),
-                                                   TextButton(
-                                                     onPressed: () {
-                                                       Navigator.pop(context);
-                                                     },
-                                                     child: Text('Back'),
-                                                   ),
-                                                 ],
-                                               ),
+                                                 ),
+                                                 TextButton(
+                                                   onPressed: () {
+                                                     Navigator.pop(context);
+                                                   },
+                                                   child: const Text('Back'),
+                                                 ),
+                                                 TextButton(
+                                                     onPressed: (){
+                                                       final request = context.read<CookieRequest>();
+                                                       createNewWaste(context, request, wasteType, weight);
+                                                 },
+                                                     child: const Text('Add'))
+                                               ],
                                              ),
                                             );
                                           });

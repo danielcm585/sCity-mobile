@@ -6,6 +6,7 @@ import 'package:scity_mobile/providers/cookie_request_provider.dart';
 import 'package:scity_mobile/pages/waste/waste_detail_page.dart';
 import 'package:scity_mobile/pages/waste/add_waste.dart';
 import 'package:intl/intl.dart';
+import 'package:scity_mobile/pages/waste/waste_admin_page.dart';
 
 class MyWastePage extends StatefulWidget {
   const MyWastePage({Key? key}) : super(key: key);
@@ -56,6 +57,8 @@ class _MyWasteState extends State<MyWastePage> {
     total = 0;
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +91,9 @@ class _MyWasteState extends State<MyWastePage> {
                   );
                 } else {
                   for(var i=0; i<snapshot.data!.length;i++){
-                    iTotal(snapshot.data![i].fields.wasteType, snapshot.data![i].fields.weight);
+                    if (snapshot.data![i].fields.isConfirm == true){
+                      iTotal(snapshot.data![i].fields.wasteType, snapshot.data![i].fields.weight);
+                    }
                   }
                   return Column(
                     children: <Widget>[
@@ -104,7 +109,7 @@ class _MyWasteState extends State<MyWastePage> {
                             ),
                           ),
                           Padding(
-                          padding: EdgeInsets.all(15), //apply padding to all four sides
+                          padding: const EdgeInsets.all(15), //apply padding to all four sides
                           child: Text("Total Income : Rp.${printTotal()}",
                             style:
                             const TextStyle(
@@ -164,9 +169,9 @@ class _MyWasteState extends State<MyWastePage> {
                                       ),
                                     ],
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Padding(
-                                    padding: EdgeInsets.all(25.0),
+                                    padding: const EdgeInsets.all(25.0),
                                     child:Text(
                                         snapshot.data![index].fields.isConfirm? "Verified": "Not Verified",
                                         style: TextStyle(
@@ -186,22 +191,55 @@ class _MyWasteState extends State<MyWastePage> {
                 }
               }
             }),
-        floatingActionButton:FloatingActionButton.extended(
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const AddWastePage()),
-            );
-          },
-          icon: const Icon(Icons.add_rounded,
-          color: Colors.white,),
-          label: const Text("Add",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+        floatingActionButton:Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 40),
+              child: FloatingActionButton.extended(
+                heroTag: null,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AddWastePage(),
+                  ));
+                },
+                icon: const Icon(Icons.add_rounded,
+                color: Colors.white,),
+                label: const Text("       Add       ",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17,
+                  color: Colors.white,
+                  ),
+                ),
+              ),
             ),
-          ),
-
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(top: 0),
+              child: FloatingActionButton.extended(
+                heroTag: "btn2",
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AdminWastePage(),
+                      ));
+                },
+                icon: const Icon(Icons.admin_panel_settings,
+                  color: Colors.white,),
+                  backgroundColor: Colors.lightBlueAccent,
+                  label: const Text("Admin ?",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
     );
   }
