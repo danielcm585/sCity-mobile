@@ -4,7 +4,7 @@ import 'package:scity_mobile/config.dart';
 
 Future<void> deleteWaste(context, request, id) async {
 
-  final resp = await request.post("${AppConfig.apiUrl}waste/api/admin/delete/${id}", {
+  final resp = await request.post("${AppConfig.apiUrl}waste/api/admin/delete/$id", {
 
   });
 

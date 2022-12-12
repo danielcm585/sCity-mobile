@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
 import 'package:scity_mobile/pages/auth/login_page.dart';
-import 'package:scity_mobile/pages/marine/main_marine.dart';
 import 'package:scity_mobile/pages/tender/tender_main_page.dart';
 import 'package:scity_mobile/pages/waste/waste_main_page.dart';
 import 'package:scity_mobile/providers/cookie_request_provider.dart';
@@ -399,10 +398,7 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(height: 14),
                       OutlinedButton(
                         onPressed: () {
-                          Navigator.pushReplacement(
-                            context, 
-                            MaterialPageRoute(builder: (context) => const MarineMainPage()),
-                          );
+                          
                         },
                         style: ButtonStyle(
                           
