@@ -47,7 +47,7 @@ class Fields {
     String photoUrl;
     String title;
     String description;
-    int price;
+    String price;
     String contactName;
     String contactNumber;
 
