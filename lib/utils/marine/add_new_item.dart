@@ -7,7 +7,7 @@ void addNewItem(context, request, refresh, title, description, contactName, cont
     'photo_url': photoURL,
     'title': title,
     'description': description,
-    'price': price,
+    'price':  price,
     'contact_name': contactName,
     'contact_number': contactNumber,
   });

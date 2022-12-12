@@ -87,7 +87,7 @@ class _MarineMainPageState extends State<MarineMainPage> {
                                   child: ListTile(
                                     onTap: () {},
                                     title: Text(
-                                      "${snapshot.data![index].title}",
+                                      "${snapshot.data![index].fields.price}",
                                       style: const TextStyle(
                                         fontSize: 16.0,
                                       ),
@@ -95,13 +95,13 @@ class _MarineMainPageState extends State<MarineMainPage> {
                                     subtitle: Row(
                                       children: [
                                         Text(
-                                          "${snapshot.data![index].price}",
+                                          "${snapshot.data![index].fields.price}",
                                           style: const TextStyle(
                                             fontSize: 16.0,
                                           ),
                                         ),
                                         Text(
-                                          "${snapshot.data![index].contact_number}",
+                                          "${snapshot.data![index].fields.contactNumber}",
                                           style: const TextStyle(
                                             fontSize: 16.0,
                                           ),
