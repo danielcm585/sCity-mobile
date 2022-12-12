@@ -6,6 +6,7 @@ import 'package:scity_mobile/providers/cookie_request_provider.dart';
 import 'package:scity_mobile/pages/healthcare/healthcareFormPage.dart';
 import 'package:scity_mobile/pages/healthcare/healthcareDetailsPage.dart';
 import 'package:intl/intl.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class HealthcarePage extends StatefulWidget {
   const HealthcarePage({Key? key}) : super(key: key);
