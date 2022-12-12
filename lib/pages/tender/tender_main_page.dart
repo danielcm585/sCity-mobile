@@ -86,12 +86,12 @@ class _TenderMainPageState extends State<TenderMainPage> {
                     );
                   }
                   if (!snapshot.hasData) {
-                    return const Text("0 projects");
+                    return const Text("0 project");
                   }
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("${snapshot.data!.length} projects"),
+                      Text("${snapshot.data!.length} ${snapshot.data!.length > 1 ? 'projects' : 'project'}"),
                       const SizedBox(height: 6),
                       GridView.count(
                         crossAxisCount: 2,
@@ -171,12 +171,12 @@ class _TenderMainPageState extends State<TenderMainPage> {
                     );
                   }
                   if (!snapshot.hasData) {
-                    return const Text("0 companies");
+                    return const Text("0 company");
                   }
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("${snapshot.data!.length} companies"),
+                      Text("${snapshot.data!.length} ${snapshot.data!.length > 1  ? 'companies' : 'company'}"),
                       const SizedBox(height: 6),
                       GridView.count(
                         crossAxisCount: 2,

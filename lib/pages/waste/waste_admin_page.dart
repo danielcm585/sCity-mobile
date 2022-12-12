@@ -16,14 +16,13 @@ class AdminWastePage extends StatefulWidget {
   final String title = 'My Waste';
 
   @override
-  _AdminWasteState createState() => _AdminWasteState();
+  State<AdminWastePage> createState() => _AdminWasteState();
 }
 
 
 class _AdminWasteState extends State<AdminWastePage> {
 
-  final oCcy = new NumberFormat("#,##0.00", "en_US");
-  @override
+  final oCcy = NumberFormat("#,##0.00", "en_US");
   String? priceCount(String type,int weight) {
     if (type == "Plastic") {
       return oCcy.format(weight * 3000);
@@ -34,6 +33,7 @@ class _AdminWasteState extends State<AdminWastePage> {
     } else if (type == "Glass") {
       return oCcy.format(weight * 1000);
     }
+    return null;
   }
 
   @override

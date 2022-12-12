@@ -60,6 +60,8 @@ class _CompanyDetailPageState extends State<CompanyDetailPage> {
                     const SizedBox(width: 4),
                     Text(
                       snapshot.data.companyName,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -96,7 +98,7 @@ class _CompanyDetailPageState extends State<CompanyDetailPage> {
                   )
                 ),
                 const SizedBox(height: 6),
-                Text("${snapshot.data.projects!.length} projects"),
+                Text("${snapshot.data.projects!.length} ${snapshot.data.projects!.length > 1 ? 'projects' : 'project'}"),
                 const SizedBox(height: 6),
                 (
                   snapshot.data.projects!.isNotEmpty ?
