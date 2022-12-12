@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:scity_mobile/models/tourism/place_model.dart';
+import 'package:scity_mobile/models/tourism/tourism_model.dart';
 import 'package:scity_mobile/pages/tourism/new_place_page.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
+import 'package:scity_mobile/utils/tourism/fetch_tourism.dart';
 
 class PlaceListPage extends StatefulWidget {
   PlaceListPage({super.key});
@@ -14,6 +16,7 @@ class PlaceListPage extends StatefulWidget {
 }
 
 class PlaceListPageState extends State<PlaceListPage> {
+  List<TourismModel> listPlace = [];
   final List<Place> _dataList = [
     Place(
         description:
@@ -24,8 +27,7 @@ class PlaceListPageState extends State<PlaceListPage> {
         image:
             'https://www.ancol.com/blog/wp-content/uploads/2022/02/tempat-wisata-di-jakarta-hits-murah.jpg'),
     Place(
-      description:
-            'Museum Sejarah Jakarta dikenal dengan Museum Fatahillah.',
+        description: 'Museum Sejarah Jakarta dikenal dengan Museum Fatahillah.',
         name: "Museum Fatahillah",
         price: 5000,
         visitor: 0,
@@ -54,48 +56,69 @@ class PlaceListPageState extends State<PlaceListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Color(0xff05B068),
-        title: Text('sCity',
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          handleAdd();
-        },
-        child: Icon(Icons.add),
-      ),
-      drawer: AppDrawer(),
-      body: Padding(
-        padding: EdgeInsets.all(10),
-        child: ListView.builder(
-            itemCount: _dataList.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Center(
-                child: Card(
-                  child: Column(children: [
-                    Container(
-                        height: 200,
-                        child: Image.network(
-                          _dataList[index].image,
-                          fit: BoxFit.cover,
-                        )),
-                    Text(
-                      _dataList[index].name,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Text(_dataList[index].description),
-                    Text("Price: ${_dataList[index].price}"),
-                    Text("Total visitor: ${_dataList[index].visitor}"),
-                    ElevatedButton(
-                        onPressed: () => addVisitor(index),
-                        child: Text("+ buy ticket"))
-                  ]),
-                ),
-              );
-            }),
-      ),
-    );
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Color(0xff05B068),
+          title: Text('sCity',
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            handleAdd();
+          },
+          child: Icon(Icons.add),
+        ),
+        drawer: AppDrawer(),
+        body: Padding(
+          padding: EdgeInsets.all(10),
+          child: FutureBuilder<List<TourismModel>>(
+              future: getDataPlace(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                      itemCount: listPlace.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Center(
+                          child: Card(
+                            child: Column(children: [
+                              Container(
+                                  height: 200,
+                                  child: Image.network(
+                                    listPlace[index].fields!.image!,
+                                    fit: BoxFit.cover,
+                                  )),
+                              Text(
+                                listPlace[index].fields!.name!,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Text(listPlace[index].fields!.description!),
+                              Text("Price: ${listPlace[index].fields!.price!}"),
+                              Text(
+                                  "Total visitor: ${listPlace[index].fields!.visitor!}"),
+                              ElevatedButton(
+                                  onPressed: () => addVisitor(index),
+                                  child: Text("+ buy ticket"))
+                            ]),
+                          ),
+                        );
+                      });
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              }),
+        ));
+  }
+
+  Future<List<TourismModel>> getDataPlace() async {
+    var jsonMap = await FetchTourism().getDataPlace();
+    for (int i = 0; i < jsonMap.length; i++) {
+      TourismModel tourismModel = TourismModel.fromJson(jsonMap[i]);
+      listPlace.add(tourismModel);
+    }
+
+    return listPlace;
   }
 }
