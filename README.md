@@ -1,6 +1,6 @@
 # sCity
 
-![deskripsi](https://github.com/danielcm585/sCity/actions/workflows/dpl.yml/badge.svg)
+[![Build status](https://build.appcenter.ms/v0.1/apps/5b1b5e25-556f-4681-9a0c-232fc747aaa3/branches/master/badge)](https://appcenter.ms)
 
 ## Kelompok E08 
 1. Daniel Christian Mandolang (2106630006)
@@ -11,7 +11,7 @@
 6. Raudhatul Jannah (2106654422)
 ---
 
-Aplikasi dapat diakses [disini](https://scity.herokuapp.com/)
+<!-- Aplikasi dapat diakses [disini](https://scity.herokuapp.com/) -->
 
 _Smart city_ merupakan konsep baru tentang sebuah kota yang sering kita dengar. Konsepnya adalah mendigitalkan semua jenis kegiatan yang ada di sebuah kota. Tujuan sebenarnya dari smart city adalah untuk menciptakan sebuah kota yang cukup cerdas untuk mengenali segala macam peristiwa yang terjadi di sebuah kota. Ini adalah pilar utama _smart city_.
 
