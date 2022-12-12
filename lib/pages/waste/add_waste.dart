@@ -85,7 +85,7 @@ class _AddWasteState extends State<AddWastePage> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold)),
                               TextSpan(
-                                text: " Rp.3,000.00",
+                                text: " Rp.3,000.00 / Kg",
                                 style: TextStyle(color: Colors.black87,fontSize: 18,),
                               ),
                             ],
@@ -98,13 +98,13 @@ class _AddWasteState extends State<AddWastePage> {
                           text: const TextSpan(
                             children: [
                               TextSpan(
-                                  text: "Metal        : ",
+                                  text: "Metal       : ",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold)),
                               TextSpan(
-                                text: " Rp.4,000.00",
+                                text: " Rp.4,000.00 / Kg",
                                 style: TextStyle(color: Colors.black87,fontSize: 18,),
                               ),
                             ],
@@ -123,7 +123,7 @@ class _AddWasteState extends State<AddWastePage> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold)),
                               TextSpan(
-                                text: " Rp.2,000.00",
+                                text: " Rp.2,000.00 / Kg",
                                 style: TextStyle(color: Colors.black87,fontSize: 18,),
                               ),
                             ],
@@ -142,7 +142,7 @@ class _AddWasteState extends State<AddWastePage> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold)),
                               TextSpan(
-                                text: " Rp.1,000.00",
+                                text: " Rp.1,000.00 / Kg",
                                 style: TextStyle(color: Colors.black87,fontSize: 18,),
                               ),
                             ],
@@ -218,14 +218,20 @@ class _AddWasteState extends State<AddWastePage> {
                                                padding: const EdgeInsets.only(top: 20, bottom: 20),
                                                  shrinkWrap: true,
                                                children: [
-                                                 const Center(child: Text('Data Confirmation : ')),
+                                                 const Center(
+                                                     child: Text(
+                                                       'Data Confirmation : ',
+                                                       style: TextStyle(
+                                                           fontWeight: FontWeight.bold),
+                                                     )
+                                                 ),
                                                  const SizedBox(height: 20),
                                                  Padding(
                                                    padding: const EdgeInsets.all(8.0),
                                                    child: Column(
                                                      children: [
                                                        Text('Waste Type: $wasteType'),
-                                                       Text('Weight: $weight'),
+                                                       Text('Weight: $weight Kg'),
                                                      ],
                                                    ),
                                                  ),
