@@ -1,6 +1,6 @@
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
-import 'package:scity_mobile/models/marine/marine_models..dart';
+import 'package:scity_mobile/models/marine/marine_models.dart';
 import 'package:scity_mobile/config.dart';
 import 'dart:convert';
 
