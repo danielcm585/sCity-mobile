@@ -10,8 +10,6 @@ import 'package:scity_mobile/pages/healthcare/healthcareMainPage.dart';
 import '../../pages/marine/main_marine.dart';
 import 'package:scity_mobile/pages/tourism/place_list_page.dart';
 
-import '../../pages/marine/main_marine.dart';
-
 class AppDrawer extends StatefulWidget {
   const AppDrawer({super.key});
 
@@ -72,15 +70,6 @@ class _AppDrawerState extends State<AppDrawer> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => PlaceListPage()),
-                        );
-                      }),
-                  ListTile(
-                      title: const Text('Marine'),
-                      onTap: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MarineMainPage()),
                         );
                       }),
                   ListTile(
