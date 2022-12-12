@@ -14,14 +14,13 @@ class MyWastePage extends StatefulWidget {
   final String title = 'My Waste';
 
   @override
-  _MyWasteState createState() => _MyWasteState();
+  State<MyWastePage> createState() => _MyWasteState();
 }
 
 
 class _MyWasteState extends State<MyWastePage> {
   var total = 0;
-  final oCcy = new NumberFormat("#,##0.00", "en_US");
-  @override
+  final oCcy = NumberFormat("#,##0.00", "en_US");
   String? priceCount(String type,int weight) {
     if (type == "Plastic") {
       return oCcy.format(weight * 3000);
@@ -32,6 +31,7 @@ class _MyWasteState extends State<MyWastePage> {
     } else if (type == "Glass") {
       return oCcy.format(weight * 1000);
     }
+    return null;
   }
 
   int? iTotal(String type, int weight){
@@ -45,6 +45,7 @@ class _MyWasteState extends State<MyWastePage> {
     } else if (type == "Glass") {
       total += weight * 1000;
     }
+    return null;
   }
 
   String printTotal(){
@@ -216,7 +217,7 @@ class _MyWasteState extends State<MyWastePage> {
                 ),
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Padding(
               padding: const EdgeInsets.only(top: 0),
               child: FloatingActionButton.extended(
