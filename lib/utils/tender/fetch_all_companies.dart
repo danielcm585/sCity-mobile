@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:scity_mobile/config.dart';
 import 'package:scity_mobile/models/tender/company_model.dart';
@@ -14,7 +13,6 @@ Future<List<Company>> fetchAllCompanies() async {
   );
   
   var datas = jsonDecode(utf8.decode(resp.bodyBytes));
-  log(datas.toString());
 
   List<Company> listCompany = [];
   for (var data in datas) {

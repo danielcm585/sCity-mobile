@@ -13,14 +13,12 @@ Future<List<Project>> fetchAllProjects() async {
   );
   
   var datas = jsonDecode(utf8.decode(resp.bodyBytes));
-  // log(datas.toString());
 
   List<Project> listProject = [];
   for (var data in datas) {
     if (data == null) continue;
     listProject.add(Project.fromJson(data));
   }
-  // log(listProject.toString());
   
   return listProject;
 }
