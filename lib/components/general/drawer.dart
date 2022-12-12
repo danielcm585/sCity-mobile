@@ -8,7 +8,7 @@ import 'package:scity_mobile/utils/auth/handle_logout.dart';
 import 'package:scity_mobile/providers/cookie_request_provider.dart';
 import 'package:scity_mobile/pages/waste/waste_main_page.dart';
 import 'package:scity_mobile/pages/healthcare/healthcareMainPage.dart';
-import 'package:scity_mobile/pages/tourism/place_list_page.dart';
+import '../../pages/marine/main_marine.dart';
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({super.key});
@@ -55,22 +55,11 @@ class _AppDrawerState extends State<AppDrawer> {
                   }
                 ),
                 ListTile(
-                  title: const Text('Tourism'),
-                  onTap: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => PlaceListPage()),
-                    );
-                  }
-                ),
-                ListTile(
                   title: const Text('Marine'),
                   onTap: () {
                     Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const MarineMainPage()),
+                      context, 
+                      MaterialPageRoute(builder: (context) => const MarineMainPage()),
                     );
                   }
                 ),
