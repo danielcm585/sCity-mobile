@@ -96,12 +96,12 @@ class _AllCompaniesPageState extends State<AllCompaniesPage> {
                     );
                   }
                   if (!snapshot.hasData) {
-                    return const Text("0 projects");
+                    return const Text("0 project");
                   }
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("${snapshot.data!.length} projects"),
+                      Text("${snapshot.data!.length} ${snapshot.data!.length > 1  ? 'companies' : 'company'}"),
                       const SizedBox(height: 6),
                       GridView.count(
                         crossAxisCount: 2,

@@ -1,8 +1,14 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
+import 'package:scity_mobile/models/agriculture/agriculture_model.dart';
+import 'package:scity_mobile/pages/agriculture/main_agriculture.dart';
 import 'package:scity_mobile/pages/auth/login_page.dart';
 import 'package:scity_mobile/pages/tender/tender_main_page.dart';
+import 'package:scity_mobile/pages/waste/waste_main_page.dart';
+import 'package:scity_mobile/providers/cookie_request_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,6 +20,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    var isLogin = context.watch<CookieRequest>().loggedIn;
     return Scaffold(
         appBar: AppBar(
           title: const Text('sCity', style: TextStyle(color: Colors.white)),
@@ -183,37 +190,59 @@ class _HomePageState extends State<HomePage> {
               children: [
                 const SizedBox(height: 40),
                 Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text('Help Environment',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            )),
-                        const SizedBox(height: 14),
-                        const Text(
-                            "Take care of the environment by digitalize the garbage collection system.",
-                            style: TextStyle(
-                              fontSize: 16,
-                            )),
-                        const SizedBox(height: 14),
-                        OutlinedButton(
-                            onPressed: () {},
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.white),
-                                foregroundColor: MaterialStateProperty.all(
-                                    const Color.fromRGBO(0x10, 0xb9, 0x81, 1)),
-                                shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(6),
-                                ))),
-                            child: const Text('Help Now',
-                                style: TextStyle(fontSize: 14))),
-                      ],
-                    )),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Help Environment',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        )
+                      ),
+                      const SizedBox(height: 14),
+                      const Text(
+                        "Take care of the environment by digitalize the garbage collection system.",
+                        style: TextStyle(
+                          fontSize: 16,
+                        )
+                      ),
+                      const SizedBox(height: 14),
+                      OutlinedButton(
+                        onPressed: () {
+                          if (isLogin == true){
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => const MyWastePage()),
+                            );
+                          } else { Fluttertoast.showToast(
+                          msg: "you are not logged in",
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          );
+                          }
+                        },
+                        style: ButtonStyle(
+                          
+                          backgroundColor: MaterialStateProperty.all(Colors.white),
+                          foregroundColor: MaterialStateProperty.all(const Color.fromRGBO(0x10,0xb9,0x81,1)),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(6),
+                            )
+                          )
+                        ),
+                        child: const Text(
+                          'Help Now',
+                          style: TextStyle(
+                            fontSize: 14
+                          )
+                        )
+                      ),
+                    ],
+                  )
+                ),
                 const SizedBox(height: 20),
                 Image.asset('assets/images/environment.jpg'),
               ],
@@ -263,37 +292,52 @@ class _HomePageState extends State<HomePage> {
               children: [
                 const SizedBox(height: 40),
                 Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text('Modern Agriculture',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            )),
-                        const SizedBox(height: 14),
-                        const Text(
-                            "Help and connect farmers with their own clients and suppliers.",
-                            style: TextStyle(
-                              fontSize: 16,
-                            )),
-                        const SizedBox(height: 14),
-                        OutlinedButton(
-                            onPressed: () {},
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(Colors.white),
-                                foregroundColor: MaterialStateProperty.all(
-                                    const Color.fromRGBO(0x10, 0xb9, 0x81, 1)),
-                                shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(6),
-                                ))),
-                            child: const Text('Farm Now',
-                                style: TextStyle(fontSize: 14))),
-                      ],
-                    )),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Modern Agriculture',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        )
+                      ),
+                      const SizedBox(height: 14),
+                      const Text(
+                        "Help and connect farmers with their own clients and suppliers.",
+                        style: TextStyle(
+                          fontSize: 16,
+                        )
+                      ),
+                      const SizedBox(height: 14),
+                      OutlinedButton(
+                        onPressed: () {
+                           Navigator.pushReplacement(
+                            context, 
+                            MaterialPageRoute(builder: (context) => const AgricultureMainPage()),
+                          );
+                        },
+                        style: ButtonStyle(
+                          
+                          backgroundColor: MaterialStateProperty.all(Colors.white),
+                          foregroundColor: MaterialStateProperty.all(const Color.fromRGBO(0x10,0xb9,0x81,1)),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(6),
+                            )
+                          )
+                        ),
+                        child: const Text(
+                          'Farm Now',
+                          style: TextStyle(
+                            fontSize: 14
+                          )
+                        )
+                      ),
+                    ],
+                  )
+                ),
                 const SizedBox(height: 20),
                 Image.asset('assets/images/agriculture.webp'),
               ],

@@ -35,146 +35,148 @@ class _RegisterPageState extends State<RegisterPage> {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       drawer: const AppDrawer(),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 265,
-            child: SvgPicture.asset('assets/svg/register.svg')
-          ),
-          Form(
-            key: _formKey,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Register',
-                    style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.w800,
-                      color: Color.fromRGBO(0x10,0xb9,0x81,1),
-                    )
-                  ),
-                  const SizedBox(height: 20),
-                  const Text('Username'),
-                  const SizedBox(height: 4),
-                  SizedBox(
-                    height: 42,
-                    child: TextField(
-                      onChanged: (String? newVal) {
-                        setState(() { username = newVal!; });
-                      },
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 265,
+              child: SvgPicture.asset('assets/svg/register.svg')
+            ),
+            Form(
+              key: _formKey,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Register',
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.w800,
+                        color: Color.fromRGBO(0x10,0xb9,0x81,1),
+                      )
+                    ),
+                    const SizedBox(height: 20),
+                    const Text('Username'),
+                    const SizedBox(height: 4),
+                    SizedBox(
+                      height: 42,
+                      child: TextField(
+                        onChanged: (String? newVal) {
+                          setState(() { username = newVal!; });
+                        },
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10)
+                          ),
+                          contentPadding: const EdgeInsets.all(10),
                         ),
-                        contentPadding: const EdgeInsets.all(10),
-                      ),
-                    )
-                  ),
-                  const SizedBox(height: 20),
-                  const Text('Password'),
-                  const SizedBox(height: 4),
-                  SizedBox(
-                    height: 42,
-                    child: TextField(
-                      obscureText: _hidePassword,
-                      onChanged: (String? newVal) {
-                        setState(() { password = newVal!; });
-                      },
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)
+                      )
+                    ),
+                    const SizedBox(height: 20),
+                    const Text('Password'),
+                    const SizedBox(height: 4),
+                    SizedBox(
+                      height: 42,
+                      child: TextField(
+                        obscureText: _hidePassword,
+                        onChanged: (String? newVal) {
+                          setState(() { password = newVal!; });
+                        },
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10)
+                          ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() { _hidePassword = !_hidePassword; });
+                            },
+                            icon: _hidePassword ?
+                              const Icon(Icons.visibility) : 
+                              const Icon(Icons.visibility_off)
+                          ),
+                          contentPadding: const EdgeInsets.all(10),
                         ),
-                        suffixIcon: IconButton(
+                      )
+                    ),
+                    const SizedBox(height: 20),
+                    const Text('Confirm Password'),
+                    const SizedBox(height: 4),
+                    SizedBox(
+                      height: 42,
+                      child: TextField(
+                        obscureText: _hideConfirmPassword,
+                        onChanged: (String? newVal) {
+                          setState(() { confirmPassword = newVal!; });
+                        },
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10)
+                          ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() { _hideConfirmPassword = !_hideConfirmPassword; });
+                            },
+                            icon: _hideConfirmPassword ?
+                              const Icon(Icons.visibility) : 
+                              const Icon(Icons.visibility_off)
+                          ),
+                          contentPadding: const EdgeInsets.all(10),
+                        ),
+                      )
+                    ),
+                    Row(
+                      children: [
+                        const Text('Do not have an account?'),
+                        TextButton(
                           onPressed: () {
-                            setState(() { _hidePassword = !_hidePassword; });
-                          },
-                          icon: _hidePassword ?
-                            const Icon(Icons.visibility) : 
-                            const Icon(Icons.visibility_off)
-                        ),
-                        contentPadding: const EdgeInsets.all(10),
-                      ),
-                    )
-                  ),
-                  const SizedBox(height: 20),
-                  const Text('Confirm Password'),
-                  const SizedBox(height: 4),
-                  SizedBox(
-                    height: 42,
-                    child: TextField(
-                      obscureText: _hideConfirmPassword,
-                      onChanged: (String? newVal) {
-                        setState(() { confirmPassword = newVal!; });
-                      },
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)
-                        ),
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() { _hideConfirmPassword = !_hideConfirmPassword; });
-                          },
-                          icon: _hideConfirmPassword ?
-                            const Icon(Icons.visibility) : 
-                            const Icon(Icons.visibility_off)
-                        ),
-                        contentPadding: const EdgeInsets.all(10),
-                      ),
-                    )
-                  ),
-                  Row(
-                    children: [
-                      const Text('Do not have an account?'),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context, 
-                            MaterialPageRoute(builder: (context) => const LoginPage())
-                          );
+                            Navigator.pushReplacement(
+                              context, 
+                              MaterialPageRoute(builder: (context) => const LoginPage())
+                            );
+                          }, 
+                          child: const Text(
+                            'Login',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            )
+                          )
+                        )
+                      ]
+                    ),
+                    const SizedBox(height: 2),
+                    SizedBox(
+                      width: double.maxFinite,
+                      height: 42,
+                      child: TextButton(
+                        onPressed: () async {
+                          final request = context.read<CookieRequest>();
+                          handleRegister(context, request, username, password, confirmPassword);
                         }, 
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(0x10,0xb9,0x81,1)),
+                          foregroundColor: MaterialStateProperty.all(Colors.white),
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            )
+                          )
+                        ),
                         child: const Text(
-                          'Login',
+                          'Register',
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                            fontSize: 18
                           )
-                        )
-                      )
-                    ]
-                  ),
-                  const SizedBox(height: 2),
-                  SizedBox(
-                    width: double.maxFinite,
-                    height: 42,
-                    child: TextButton(
-                      onPressed: () async {
-                        final request = context.read<CookieRequest>();
-                        handleRegister(context, request, username, password, confirmPassword);
-                      }, 
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(0x10,0xb9,0x81,1)),
-                        foregroundColor: MaterialStateProperty.all(Colors.white),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          )
-                        )
-                      ),
-                      child: const Text(
-                        'Register',
-                        style: TextStyle(
-                          fontSize: 18
                         )
                       )
                     )
-                  )
-                ],
+                  ],
+                )
               )
             )
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
