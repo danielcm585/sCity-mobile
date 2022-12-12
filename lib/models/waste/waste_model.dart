@@ -2,7 +2,6 @@
 //
 //     final myWaste = myWasteFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 List<MyWaste> myWasteFromJson(String str) => List<MyWaste>.from(json.decode(str).map((x) => MyWaste.fromJson(x)));
