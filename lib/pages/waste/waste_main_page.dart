@@ -203,7 +203,7 @@ class _MyWasteState extends State<MyWastePage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => const AddWastePage(),
-                  ));
+                  )).then((_) => setState(() {}));
                 },
                 icon: const Icon(Icons.add_rounded,
                 color: Colors.white,),
@@ -226,7 +226,7 @@ class _MyWasteState extends State<MyWastePage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => const AdminWastePage(),
-                      ));
+                      )).then((_) => setState(() {}));
                 },
                 icon: const Icon(Icons.admin_panel_settings,
                   color: Colors.white,),

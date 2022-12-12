@@ -6,6 +6,8 @@ import 'package:scity_mobile/providers/cookie_request_provider.dart';
 import 'package:scity_mobile/pages/waste/waste_detail_page.dart';
 import 'package:intl/intl.dart';
 import 'package:scity_mobile/utils/waste/admin_check.dart';
+import 'package:scity_mobile/utils/waste/delete_waste_admin.dart';
+import 'package:scity_mobile/utils/waste/update_waste_admin.dart';
 
 
 class AdminWastePage extends StatefulWidget {
@@ -20,8 +22,6 @@ class AdminWastePage extends StatefulWidget {
 
 class _AdminWasteState extends State<AdminWastePage> {
 
-
-  var total = 0;
   final oCcy = new NumberFormat("#,##0.00", "en_US");
   @override
   String? priceCount(String type,int weight) {
@@ -36,31 +36,6 @@ class _AdminWasteState extends State<AdminWastePage> {
     }
   }
 
-  int? iTotal(String type, int weight){
-
-    if (type == "Plastic") {
-      total += weight * 3000;
-    } else if (type == "Metal") {
-      total += weight * 4000;
-    } else if (type == "Paper") {
-      total += weight * 2000;
-    } else if (type == "Glass") {
-      total += weight * 1000;
-    }
-  }
-
-  String printTotal(){
-    var fTotal = total;
-    reset();
-    return oCcy.format(fTotal);
-  }
-
-  void reset(){
-    total = 0;
-  }
-
-
-
   @override
   Widget build(BuildContext context) {
     var admin = false;
@@ -70,7 +45,7 @@ class _AdminWasteState extends State<AdminWastePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-            'Waste Bank2',
+            'Waste Bank (Admin)',
             style: TextStyle(
                 color: Colors.white
             )
@@ -97,40 +72,54 @@ class _AdminWasteState extends State<AdminWastePage> {
                 );
               }
               if (admin == false) {
-                return Column(
-                  children: const [
+                return Row(
+                  children: [
                     Padding(
-                      padding: EdgeInsets.all(30.0),
-                      child: Center(
-                        child: Text(
-                          "Sorry you are not admin :(",
-                          style:
-                          TextStyle(color: Color.fromRGBO(0x0f,0x76,0x6e,1), fontSize: 20),
+                      padding: const EdgeInsets.only(left: 20),
+                      child: SizedBox(
+                        height: 40,
+                        width: 40,
+                        child: IconButton(
+                          iconSize: 25,
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(Icons.arrow_back_ios),
                         ),
                       ),
                     ),
-                    SizedBox(height: 8),
+                   const Padding(
+                        padding: EdgeInsets.only(
+                            left: 50.0, right: 20,top: 30,bottom: 30
+                        ),
+                        child:
+                        Text(
+                          "Sorry you are not admin :(",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                   ],
                 );
               }else {
-                for(var i=0; i<snapshot.data!.length;i++){
-                  if (snapshot.data![i].fields.isConfirm == true){
-                    iTotal(snapshot.data![i].fields.wasteType, snapshot.data![i].fields.weight);
-                  }
-                }
                 return Column(
                   children: <Widget>[
                     Row(
                       children: [
-                        SizedBox(
-                          height: 40,
-                          width: 40,
-                          child: IconButton(
-                            iconSize: 25,
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: const Icon(Icons.arrow_back_ios),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: SizedBox(
+                            height: 40,
+                            width: 40,
+                            child: IconButton(
+                              iconSize: 25,
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(Icons.arrow_back_ios),
+                            ),
                           ),
                         ),
                         Center(
@@ -210,14 +199,47 @@ class _AdminWasteState extends State<AdminWastePage> {
                                   ],
                                 ),
                                 const Spacer(),
-                                Padding(
-                                    padding: const EdgeInsets.all(25.0),
-                                    child:Text(
-                                      snapshot.data![index].fields.isConfirm? "Verified": "Not Verified",
-                                      style: TextStyle(
-                                          color: snapshot.data![index].fields.isConfirm? Colors.green: Colors.red
-                                      ),
-                                    )
+                                Column(
+                                  children: [
+                                    Padding(
+                                        padding: const EdgeInsets.all(25.0),
+                                        child:Text(
+                                          snapshot.data![index].fields.isConfirm? "Verified": "Not Verified",
+                                          style: TextStyle(
+                                              color: snapshot.data![index].fields.isConfirm? Colors.green: Colors.red
+                                          ),
+                                        )
+                                    ),
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 50),
+                                          child: SizedBox(
+                                            height: 20,
+                                            width: 20,
+                                            child: IconButton(
+                                              iconSize: 27,
+                                              onPressed: () {
+                                                updateWaste(context, context.read<CookieRequest>() , snapshot.data![index].pk);
+                                              },
+                                              icon: Icon(snapshot.data![index].fields.isConfirm? Icons.check_box_rounded : Icons.check_box_outline_blank_rounded  ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 20,
+                                          width: 20,
+                                          child: IconButton(
+                                            iconSize: 27,
+                                            onPressed: () {
+                                              deleteWaste(context, context.read<CookieRequest>() , snapshot.data![index].pk);
+                                            },
+                                            icon: const Icon(Icons.delete),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                                 const SizedBox(height: 10),
                               ],
