@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:scity_mobile/models/tourism/place_model.dart';
 import 'package:scity_mobile/pages/tourism/new_place_page.dart';
+import 'package:scity_mobile/components/general/drawer.dart';
 
 class PlaceListPage extends StatefulWidget {
   PlaceListPage({super.key});
@@ -45,13 +46,19 @@ class PlaceListPageState extends State<PlaceListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Isi judulnya disini!")),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Color(0xff05B068),
+        title: Text('sCity',
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           handleAdd();
         },
         child: Icon(Icons.add),
       ),
+      drawer: AppDrawer(),
       body: Padding(
         padding: EdgeInsets.all(10),
         child: ListView.builder(
@@ -68,7 +75,7 @@ class PlaceListPageState extends State<PlaceListPage> {
                         )),
                     Text(
                       _dataList[index].name,
-                      style: Theme.of(context).textTheme.headline6,
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(_dataList[index].description),
                     Text("Price: ${_dataList[index].price}"),
