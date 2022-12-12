@@ -18,11 +18,19 @@ class PlaceListPageState extends State<PlaceListPage> {
     Place(
         description:
             'Ancol Taman Impian tempat rekreasi terbesar di Indonesia.',
-        name: "Place 1",
-        price: 12,
+        name: "Ancol",
+        price: 12000,
         visitor: 0,
         image:
-            'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg')
+            'https://www.ancol.com/blog/wp-content/uploads/2022/02/tempat-wisata-di-jakarta-hits-murah.jpg'),
+    Place(
+      description:
+            'Museum Sejarah Jakarta dikenal dengan Museum Fatahillah.',
+        name: "Museum Fatahillah",
+        price: 5000,
+        visitor: 0,
+        image:
+            'https://lonelyplanetimages.imgix.net/a/g/hi/t/d884051dce68d8e1dec12bf7c490f8eb-museum-nasional.jpg'),
   ];
 
   void addVisitor(int indexPlace) {
