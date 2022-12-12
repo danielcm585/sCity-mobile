@@ -5,6 +5,7 @@ import 'package:scity_mobile/pages/auth/register_page.dart';
 import 'package:scity_mobile/pages/tender/tender_main_page.dart';
 import 'package:scity_mobile/utils/auth/handle_logout.dart';
 import 'package:scity_mobile/providers/cookie_request_provider.dart';
+import 'package:scity_mobile/pages/waste/waste_main_page.dart';
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({super.key});
@@ -31,6 +32,15 @@ class _AppDrawerState extends State<AppDrawer> {
                       MaterialPageRoute(builder: (context) => const TenderMainPage()),
                     );
                   }
+                ),
+                ListTile(
+                    title: const Text('Waste Bank'),
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => const MyWastePage()),
+                      );
+                    }
                 ),
                 
                 ListTile(

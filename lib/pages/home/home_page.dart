@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
 import 'package:scity_mobile/pages/auth/login_page.dart';
 import 'package:scity_mobile/pages/tender/tender_main_page.dart';
+import 'package:scity_mobile/pages/waste/waste_main_page.dart';
+import 'package:scity_mobile/providers/cookie_request_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,6 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    var isLogin = context.watch<CookieRequest>().loggedIn;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -228,7 +233,17 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(height: 14),
                       OutlinedButton(
                         onPressed: () {
-                          
+                          if (isLogin == true){
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => const MyWastePage()),
+                            );
+                          } else { Fluttertoast.showToast(
+                          msg: "you are not logged in",
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          );
+                          }
                         },
                         style: ButtonStyle(
                           
