@@ -6,6 +6,7 @@ import 'package:scity_mobile/pages/tender/tender_main_page.dart';
 import 'package:scity_mobile/utils/auth/handle_logout.dart';
 import 'package:scity_mobile/providers/cookie_request_provider.dart';
 import 'package:scity_mobile/pages/waste/waste_main_page.dart';
+import 'package:scity_mobile/pages/healthcare/healthcareMainPage.dart';
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({super.key});
@@ -42,7 +43,15 @@ class _AppDrawerState extends State<AppDrawer> {
                       );
                     }
                 ),
-                
+                ListTile(
+                  title: const Text('Healthcare'),
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context, 
+                      MaterialPageRoute(builder: (context) => const HealthcarePage()),
+                    );
+                  }
+                ),
                 ListTile(
                   title: const Text(
                     'Logout',

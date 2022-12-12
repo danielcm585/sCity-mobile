@@ -4,7 +4,7 @@ import 'package:scity_mobile/config.dart';
 import 'package:scity_mobile/pages/auth/login_page.dart';
 
 void handleRegister(context, request, username, password, confirmPassword) async {
-  final resp = await request.post("${AppConfig.apiUrl}/authentication/api/register/", {
+  final resp = await request.post("${AppConfig.apiUrl}authentication/api/register/", {
     'username': username,
     'password1': password,
     'password2': confirmPassword

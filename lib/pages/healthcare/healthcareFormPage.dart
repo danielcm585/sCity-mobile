@@ -119,7 +119,7 @@ class _healthcareFormPageState extends State<healthcareFormPage> {
                             )
                           ),
                           Center(
-                            child: Text("Appointment Date:" + _appointmentDate.toString().split(' ')[0],
+                            child: Text("Appointment Date:${_appointmentDate.toString().split(' ')[0]}",
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.normal
