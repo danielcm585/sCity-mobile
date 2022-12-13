@@ -1,6 +1,8 @@
 # sCity
 
 [![Build status](https://build.appcenter.ms/v0.1/apps/5b1b5e25-556f-4681-9a0c-232fc747aaa3/branches/master/badge)](https://appcenter.ms)
+[![Pre-Release](https://github.com/danielcm585/sCity-mobile/actions/workflows/pre-release.yml/badge.svg)](https://github.com/danielcm585/sCity-mobile/actions/workflows/pre-release.yml)
+[![Release](https://github.com/danielcm585/sCity-mobile/actions/workflows/release.yml/badge.svg)](https://github.com/danielcm585/sCity-mobile/actions/workflows/release.yml)
 
 ## Kelompok E08 
 1. Daniel Christian Mandolang (2106630006)
