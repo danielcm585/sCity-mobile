@@ -4,7 +4,7 @@ import 'package:scity_mobile/config.dart';
 import 'package:scity_mobile/models/tourism/place_model.dart';
 
 void createNewPlace(context, request, refresh, Place place) async {
-  final resp = await request.post("${AppConfig.apiUrl}/tender/api/v2/place/", place.toJson());
+  final resp = await request.post("${AppConfig.apiUrl}tender/api/v2/place/", place.toJson());
 
   if (resp['status'] < 400) {
     Fluttertoast.showToast(

@@ -3,7 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scity_mobile/config.dart';
 
 void addItem(context, request, refresh, title, description, contactName, contactNumber, price, photoURL) async {
-  final resp = await request.post("${AppConfig.apiUrl}/agriculture/add-flutter", {
+  final resp = await request.post("${AppConfig.apiUrl}agriculture/add-flutter", {
     'photo_url': photoURL,
     'title': title,
     'description': description,

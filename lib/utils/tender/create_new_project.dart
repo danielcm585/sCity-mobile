@@ -3,7 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scity_mobile/config.dart';
 
 void createNewProject(context, request, refresh, title, description) async {
-  final resp = await request.post("${AppConfig.apiUrl}/tender/api/v2/project/", {
+  final resp = await request.post("${AppConfig.apiUrl}tender/api/v2/project/", {
     'title': title,
     'description': description
   });
