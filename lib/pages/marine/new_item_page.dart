@@ -4,6 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
 import 'package:scity_mobile/providers/cookie_request_provider.dart';
 import 'package:scity_mobile/utils/marine/add_new_item.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:scity_mobile/config.dart';
+import 'dart:convert' as convert;
 
 class NewFishPage extends StatefulWidget {
   const NewFishPage({
@@ -235,33 +238,53 @@ class _NewFishPageState extends State<NewFishPage> {
         ),
       ),
       bottomSheet: Container(
-        margin: const EdgeInsets.only(bottom: 30, left: 14, right: 14),
-        width: double.maxFinite,
-        height: 50,
-        child: TextButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(0x10,0xb9,0x81,1)),
-            foregroundColor: MaterialStateProperty.all(Colors.white),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              )
-            )
-          ),
-          onPressed: () {
-            final request = context.read<CookieRequest>();
-            addNewItem(context, request, refresh, name, description, contact, number, price, url);
-            // final request = context.read<CookieRequest>();
-            // createNewProject(context, request, refresh, title, description);
-          },
-          child: const Text(
-            'Save',
-            style: TextStyle(
-              fontSize: 16,
-            )
-          )
-        )
-      ),
+          margin: const EdgeInsets.only(bottom: 30, left: 14, right: 14),
+          width: double.maxFinite,
+          height: 50,
+          child: TextButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                      const Color.fromRGBO(0x10, 0xb9, 0x81, 1)),
+                  foregroundColor: MaterialStateProperty.all(Colors.white),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ))),
+              onPressed: () async {
+                final request = context.read<CookieRequest>();
+                // addNewItem(context, request, refresh, name, description, contact, number, price, url);
+                final resp = await request
+                    .postJson("${AppConfig.apiUrl}marine/add-flutter/", convert.jsonEncode({
+                  'photo_url': url,
+                  'title': name,
+                  'description': description,
+                  'price': price,
+                  'contact_name': contact,
+                  'contact_number': number,
+                }));
+
+                if (resp['status'] == 'success') {
+                  Fluttertoast.showToast(
+                    msg: 'Item baru berhasil disimpan',
+                    backgroundColor: Colors.green,
+                    textColor: Colors.white,
+                  );
+                  Navigator.pop(context);
+                  refresh();
+                } else {
+                  Fluttertoast.showToast(
+                    msg: resp['message'],
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                  );
+                }
+                // final request = context.read<CookieRequest>();
+                // createNewProject(context, request, refresh, title, description);
+              },
+              child: const Text('Save',
+                  style: TextStyle(
+                    fontSize: 16,
+                  )))),
     );
   }
 }
