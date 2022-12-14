@@ -92,7 +92,9 @@ class _MarineMainPageState extends State<MarineMainPage> {
                                         fontSize: 16.0,
                                       ),
                                     ),
-                                    subtitle: Row(
+                                    subtitle: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "${snapshot.data![index].fields.price}",
