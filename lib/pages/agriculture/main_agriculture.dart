@@ -1,31 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
-import 'package:scity_mobile/pages/marine/new_item_page.dart';
-import 'package:scity_mobile/utils/marine/fetch_item.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:scity_mobile/pages/agriculture/new_item_agriculture.dart';
+import 'package:scity_mobile/utils/agriculture/fetch_item.dart';
 
-class MarineMainPage extends StatefulWidget {
-  const MarineMainPage({super.key});
+class AgricultureMainPage extends StatefulWidget {
+  const AgricultureMainPage({super.key});
 
   @override
-  State<MarineMainPage> createState() => _MarineMainPageState();
+  State<AgricultureMainPage> createState() => _AgricultureMainPageState();
 }
 
-class _MarineMainPageState extends State<MarineMainPage> {
-  void refresh() {
+class _AgricultureMainPageState extends State<AgricultureMainPage> {
+   void refresh() {
     setState(() {});
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Marine', style: TextStyle(color: Colors.white)),
+        title: const Text('Agriculture', style: TextStyle(color: Colors.white)),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       drawer: AppDrawer(),
       body: FutureBuilder(
-          future: fetchMarine(),
+          future: fetchAgriculture(),
           builder: (context, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
               return const Center(
@@ -52,7 +50,7 @@ class _MarineMainPageState extends State<MarineMainPage> {
                     onPressed: () {
                       Navigator.push(
                         context, 
-                        MaterialPageRoute(builder: (context) => NewFishPage(refresh: refresh)),
+                        MaterialPageRoute(builder: (context) => NewAgriculture(refresh: refresh)),
                       );
                     },
                     style: ButtonStyle(
@@ -65,7 +63,7 @@ class _MarineMainPageState extends State<MarineMainPage> {
                       )
                     ),
                     child: const Text(
-                      'Add Fish'
+                      'Add Corps'
                     )
                   ),
                     Expanded(
@@ -120,24 +118,3 @@ class _MarineMainPageState extends State<MarineMainPage> {
     );
   }
 }
-
-
-// children: [
-//           TextButton(
-//               onPressed: () {
-//                 Navigator.push(
-//                   context,
-//                   MaterialPageRoute(
-//                       builder: (context) => NewFishPage(refresh: refresh)),
-//                 );
-//               },
-//               style: ButtonStyle(
-//                   backgroundColor: MaterialStateProperty.all(
-//                       const Color.fromRGBO(0x10, 0xb9, 0x81, 1)),
-//                   foregroundColor: MaterialStateProperty.all(Colors.white),
-//                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-//                       RoundedRectangleBorder(
-//                     borderRadius: BorderRadius.circular(10),
-//                   ))),
-//               child: const Text('New Company')),
-//         ],
