@@ -72,6 +72,8 @@ Memperkenalkan aplikasi super kami, sCity. sCity adalah aplikasi web yang memung
 
     Aplikasi ini diharapkan dapat membantu para petani dalam mempromosikan dan menjual hasil tani yang didapatkannya.
 
+    Pada versi terakhir App _Agricultural products management system_: Dilakukan proses autentikasi saat ingin memasuki modul ini.
+
 - _Marine products management system_ - Naufal Fikri Hakim
 
     Pada _Marine products management_ system, terdapat 2 jenis pengguna (admin dan user) keduanya memiliki authorization yang berbeda
@@ -79,6 +81,8 @@ Memperkenalkan aplikasi super kami, sCity. sCity adalah aplikasi web yang memung
     2. User: dapat melihat listing item-item yang ditawarkan oleh nelayan dan dapat mencari item yang dicari melalui searchbar
 
     Aplikasi ini diharapkan dapat membantu para nelayan dalam mempromosikan dan menjual hasil kekayaan laut yang didapatkannya.
+
+    Pada versi terakhir App _Marine products management system_: Dilakukan proses autentikasi saat ingin memasuki modul ini.
 
 Layanan tersebut dapat diakses secara online dengan _single sign on authentication_ melalui smart devices Anda yang mendukung browser web seperti ponsel, tablet, atau komputer.
 
