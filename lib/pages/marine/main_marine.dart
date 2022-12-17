@@ -97,7 +97,7 @@ class _MarineMainPageState extends State<MarineMainPage> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "${snapshot.data![index].fields.price}",
+                                          "Rp. ${snapshot.data![index].fields.price}",
                                           style: const TextStyle(
                                             fontSize: 16.0,
                                           ),

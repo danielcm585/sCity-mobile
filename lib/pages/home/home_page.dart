@@ -358,11 +358,19 @@ class _HomePageState extends State<HomePage> {
                       ),
                       const SizedBox(height: 14),
                       OutlinedButton(
+                        
                         onPressed: () {
-                           Navigator.pushReplacement(
-                            context, 
-                            MaterialPageRoute(builder: (context) => const AgricultureMainPage()),
+                          if (isLogin == true){
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => const AgricultureMainPage()),
+                            );
+                          } else { Fluttertoast.showToast(
+                          msg: "you are not logged in",
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
                           );
+                          }
                         },
                         style: ButtonStyle(
                           
@@ -414,10 +422,17 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(height: 14),
                       OutlinedButton(
                         onPressed: () {
-                          Navigator.pushReplacement(
+                          if (isLogin == true){
+                            Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(builder: (context) => const MarineMainPage()),
                             );
+                          } else { Fluttertoast.showToast(
+                          msg: "you are not logged in",
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          );
+                          }
                         },
                         style: ButtonStyle(
                           

@@ -40,7 +40,7 @@ class _NewAgricultureState extends State<NewAgriculture> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('New Fish', style: TextStyle(color: Colors.white)),
+        title: const Text('New Corps', style: TextStyle(color: Colors.white)),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       drawer: AppDrawer(),
