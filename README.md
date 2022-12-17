@@ -40,7 +40,9 @@ Memperkenalkan aplikasi super kami, sCity. sCity adalah aplikasi web yang memung
     
     Pada App _Tourism Managemen_ akan ada 2 tipe pengguna (admin and user).
     1. Admin: dapat menambahkan destinasi wisata yang akan di display ke user.
-    2. User: dapat membeli tiket atdi setiap destinasi wisara.
+    2. User: dapat membeli tiket di setiap destinasi wisata.
+    
+    Pada versi terakhir App _Tourism Managemen_: Dilakukan perubahan pada autentikasi untuk user biasa dengan admin. Serta, mengubah beberapa detail bentuk tampilan seperti warna tombol dan besar kecil font tulisan.
 
    Aplikasi ini diharapkan dapat mempermudah pengguna untuk membeli tiket masuk ke Destinasi Wisata, dengan harapan sektor pariwisata di kota ini dapat terus berkembang.
 
