@@ -63,7 +63,7 @@ class _AgricultureMainPageState extends State<AgricultureMainPage> {
                       )
                     ),
                     child: const Text(
-                      'Add Fish'
+                      'Add Corps'
                     )
                   ),
                     Expanded(
@@ -90,10 +90,12 @@ class _AgricultureMainPageState extends State<AgricultureMainPage> {
                                         fontSize: 16.0,
                                       ),
                                     ),
-                                    subtitle: Row(
+                                    subtitle: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "${snapshot.data![index].fields.price}",
+                                          "Rp. ${snapshot.data![index].fields.price}",
                                           style: const TextStyle(
                                             fontSize: 16.0,
                                           ),

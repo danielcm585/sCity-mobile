@@ -5,6 +5,7 @@ import 'package:scity_mobile/config.dart';
 import 'dart:convert';
 
 Future<List<Marine>> fetchMarine() async {
+  print("jai");
   var response = await http.get(
     Uri.parse("${AppConfig.apiUrl}marine/json/"),
     headers: {
@@ -12,6 +13,7 @@ Future<List<Marine>> fetchMarine() async {
       "Content-Type": "application/json",
     },
   );
+  print(response);
   // melakukan decode response menjadi bentuk json
   var data = jsonDecode(utf8.decode(response.bodyBytes));
 
@@ -19,7 +21,7 @@ Future<List<Marine>> fetchMarine() async {
 
   List<Marine> listItem = [];
   for (var d in data) {
-
+print(d);
     if (d != null) {
       listItem.add(Marine.fromJson(d));
     }

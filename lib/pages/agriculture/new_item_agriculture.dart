@@ -6,6 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
 import 'package:scity_mobile/providers/cookie_request_provider.dart';
 import 'package:scity_mobile/utils/agriculture/add_item.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:scity_mobile/config.dart';
+import 'dart:convert' as convert;
 
 class NewAgriculture extends StatefulWidget {
   const NewAgriculture({
@@ -23,6 +26,7 @@ class _NewAgricultureState extends State<NewAgriculture> {
     widget.refresh();
     setState(() {});
   }
+
   final _formKey = GlobalKey<FormState>();
 
   String name = '';
@@ -31,12 +35,12 @@ class _NewAgricultureState extends State<NewAgriculture> {
   String price = '';
   String number = '';
   String url = '';
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('New Fish', style: TextStyle(color: Colors.white)),
+        title: const Text('New Corps', style: TextStyle(color: Colors.white)),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       drawer: AppDrawer(),
@@ -61,7 +65,7 @@ class _NewAgricultureState extends State<NewAgriculture> {
                     ),
                     const SizedBox(width: 4),
                     const Text(
-                      'New Fish',
+                      'New Crops',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -72,7 +76,7 @@ class _NewAgricultureState extends State<NewAgriculture> {
                 const SizedBox(height: 14),
                 TextFormField(
                   decoration: InputDecoration(
-                    labelText: 'Fish Name',
+                    labelText: 'Crops Name',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -89,7 +93,7 @@ class _NewAgricultureState extends State<NewAgriculture> {
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return 'Harga tidak boleh kosong';
+                      return 'Nama tanaman tidak boleh kosong';
                     }
                     return null;
                   },
@@ -118,7 +122,7 @@ class _NewAgricultureState extends State<NewAgriculture> {
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return 'Kontak tidak boleh kosong';
+                      return 'Harga tidak boleh kosong';
                     }
                     return null;
                   },
@@ -235,33 +239,53 @@ class _NewAgricultureState extends State<NewAgriculture> {
         ),
       ),
       bottomSheet: Container(
-        margin: const EdgeInsets.only(bottom: 30, left: 14, right: 14),
-        width: double.maxFinite,
-        height: 50,
-        child: TextButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(0x10,0xb9,0x81,1)),
-            foregroundColor: MaterialStateProperty.all(Colors.white),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              )
-            )
-          ),
-          onPressed: () {
-            final request = context.read<CookieRequest>();
-            addItem(context, request, refresh, name, description, contact, number, price, url);
-            // final request = context.read<CookieRequest>();
-            // createNewProject(context, request, refresh, title, description);
-          },
-          child: const Text(
-            'Save',
-            style: TextStyle(
-              fontSize: 16,
-            )
-          )
-        )
-      ),
+          margin: const EdgeInsets.only(bottom: 30, left: 14, right: 14),
+          width: double.maxFinite,
+          height: 50,
+          child: TextButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                      const Color.fromRGBO(0x10, 0xb9, 0x81, 1)),
+                  foregroundColor: MaterialStateProperty.all(Colors.white),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ))),
+              onPressed: () async {
+                final request = context.read<CookieRequest>();
+                // addNewItem(context, request, refresh, name, description, contact, number, price, url);
+                final resp = await request
+                    .postJson("${AppConfig.apiUrl}agriculture/add-flutter/", convert.jsonEncode({
+                  'photo_url': url,
+                  'title': name,
+                  'description': description,
+                  'price': price,
+                  'contact_name': contact,
+                  'contact_number': number,
+                }));
+
+                if (resp['status'] == 'success') {
+                  Fluttertoast.showToast(
+                    msg: 'Item baru berhasil disimpan',
+                    backgroundColor: Colors.green,
+                    textColor: Colors.white,
+                  );
+                  Navigator.pop(context);
+                  refresh();
+                } else {
+                  Fluttertoast.showToast(
+                    msg: resp['message'],
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                  );
+                }
+                // final request = context.read<CookieRequest>();
+                // createNewProject(context, request, refresh, title, description);
+              },
+              child: const Text('Save',
+                  style: TextStyle(
+                    fontSize: 16,
+                  )))),
     );
   }
 }
