@@ -4,17 +4,15 @@ import 'package:scity_mobile/components/general/drawer.dart';
 import 'package:scity_mobile/models/tourism/place_model.dart';
 import 'package:scity_mobile/utils/tourism/create_new_place.dart';
 import 'package:scity_mobile/providers/cookie_request_provider.dart';
+import 'package:scity_mobile/utils/tourism/fetch_tourism.dart';
 
 class NewPlacePage extends StatefulWidget {
   const NewPlacePage({
     super.key,
     required this.refresh,
-    required this.addPlace,
   });
 
   final VoidCallback refresh;
-  final void Function(Place) addPlace;
-
   @override
   State<NewPlacePage> createState() => _NewPlacePageState();
 }
@@ -27,8 +25,11 @@ class _NewPlacePageState extends State<NewPlacePage> {
 
   final _formKey = GlobalKey<FormState>();
 
-  Place _newPlace =
-      Place(name: '', description: '', price: 0, image: '', visitor: 0);
+  TextEditingController name=TextEditingController();
+  TextEditingController desc=TextEditingController();
+  TextEditingController price=TextEditingController();
+  TextEditingController image=TextEditingController();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -61,12 +62,13 @@ class _NewPlacePageState extends State<NewPlacePage> {
                       const Text(
                         'New Place',
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
                   ),
+                  const SizedBox(height: 10,),
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Link Image',
@@ -74,16 +76,7 @@ class _NewPlacePageState extends State<NewPlacePage> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onChanged: (String? value) {
-                      setState(() {
-                        _newPlace.image = value!;
-                      });
-                    },
-                    onSaved: (String? value) {
-                      setState(() {
-                        _newPlace.image = value!;
-                      });
-                    },
+                    controller: image,
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         return 'Link Image tidak boleh kosong';
@@ -99,16 +92,7 @@ class _NewPlacePageState extends State<NewPlacePage> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onChanged: (String? value) {
-                      setState(() {
-                        _newPlace.name = value!;
-                      });
-                    },
-                    onSaved: (String? value) {
-                      setState(() {
-                        _newPlace.name = value!;
-                      });
-                    },
+                    controller: name,
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         return 'Nama tidak boleh kosong';
@@ -126,16 +110,7 @@ class _NewPlacePageState extends State<NewPlacePage> {
                     ),
                     keyboardType: TextInputType.multiline,
                     maxLines: 5,
-                    onChanged: (String? value) {
-                      setState(() {
-                        _newPlace.description = value!;
-                      });
-                    },
-                    onSaved: (String? value) {
-                      setState(() {
-                        _newPlace.description = value!;
-                      });
-                    },
+                    controller: desc,
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         return 'Deskripsi tidak boleh kosong';
@@ -143,6 +118,7 @@ class _NewPlacePageState extends State<NewPlacePage> {
                       return null;
                     },
                   ),
+                  SizedBox(height: 10,),
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Price',
@@ -151,16 +127,7 @@ class _NewPlacePageState extends State<NewPlacePage> {
                       ),
                     ),
                     keyboardType: TextInputType.number,
-                    onChanged: (String? value) {
-                      setState(() {
-                        _newPlace.price = int.parse(value!);
-                      });
-                    },
-                    onSaved: (String? value) {
-                      setState(() {
-                        _newPlace.price = int.parse(value!);
-                      });
-                    },
+                    controller: price,
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         return 'Nama tidak boleh kosong';
@@ -184,10 +151,8 @@ class _NewPlacePageState extends State<NewPlacePage> {
                     borderRadius: BorderRadius.circular(10),
                   ))),
               onPressed: () {
-                final request = context.read<CookieRequest>();
-                createNewPlace(context, request, refresh, _newPlace);
-                widget.addPlace(_newPlace);
-                Navigator.of(context).pop();
+              final request = context.read<CookieRequest>();
+               FetchTourism().addPlace(context, request, name.text, desc.text, price.text, image.text);
               },
               child: const Text('Save',
                   style: TextStyle(
