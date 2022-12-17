@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
+import 'package:scity_mobile/models/healthcare/healthcareModels.dart';
+import 'package:scity_mobile/providers/cookie_request_provider.dart';
+import 'package:scity_mobile/utils/healthcare/healthcareFetch.dart';
+
 
 class healthcareFormPage extends StatefulWidget {
   const healthcareFormPage({super.key});
@@ -10,11 +16,10 @@ class healthcareFormPage extends StatefulWidget {
 
 class _healthcareFormPageState extends State<healthcareFormPage> {
   final _formKey = GlobalKey<FormState>();
-  String _username = '';
-  String _keluhan = '';
-  DateTime _appointmentDate = DateTime.now();
-  int _phoneNumber = 0;
-  bool _appointmentStatus = false;
+  TextEditingController username=TextEditingController();
+  TextEditingController keluhan=TextEditingController();
+  TextEditingController appointmentDate=TextEditingController();
+  TextEditingController phoneNumber=TextEditingController();
 
   bool isNumeric(String value) {
     if (value == null) {
@@ -47,23 +52,14 @@ class _healthcareFormPageState extends State<healthcareFormPage> {
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
                               decoration: const InputDecoration(
-                                hintText: "Enter your username",
-                                labelText: "Username",
+                                hintText: "Enter your name",
+                                labelText: "Nama Pasien",
                                 border: OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(5.0)),
                                 ),
                               ),
-                              onChanged: (String? value) {
-                                setState(() {
-                                  _username = value!;
-                                });
-                              },
-                              onSaved: (String? value) {
-                                setState(() {
-                                  _username = value!;
-                                });
-                              },
+                              controller: username,
                               validator: (String? value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your username';
@@ -83,16 +79,7 @@ class _healthcareFormPageState extends State<healthcareFormPage> {
                                       BorderRadius.all(Radius.circular(5.0)),
                                 ),
                               ),
-                              onChanged: (String? value) {
-                                setState(() {
-                                  _keluhan = value!;
-                                });
-                              },
-                              onSaved: (String? value) {
-                                setState(() {
-                                  _keluhan = value!;
-                                });
-                              },
+                              controller: keluhan,
                               validator: (String? value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter keluhan';
@@ -103,7 +90,7 @@ class _healthcareFormPageState extends State<healthcareFormPage> {
                           ),
                           Center (
                             child: TextButton(
-                              child: Text("choose date"),
+                              child: Text("Appointment date made at:"),
                               onPressed: () {
                                 showDatePicker(
                                   context: context,
@@ -112,14 +99,13 @@ class _healthcareFormPageState extends State<healthcareFormPage> {
                                   lastDate: DateTime(2099),
                                 ).then((date) {
                                   setState(() {
-                                    _appointmentDate = date!;
                                   });
                                 });
                               },
                             )
                           ),
                           Center(
-                            child: Text("Appointment Date:${_appointmentDate.toString().split(' ')[0]}",
+                            child: Text("Appointment Date:${appointmentDate.toString().split(' ')[0]}",
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.normal
@@ -137,21 +123,46 @@ class _healthcareFormPageState extends State<healthcareFormPage> {
                                   ),
                                 ),
                                 keyboardType: TextInputType.number,
-                                onSaved: (String? value) {
-                                  setState(() {
-                                    _phoneNumber = int.parse(value!);
-                                  });
-                                },
+                                controller: phoneNumber,
                                 validator: (String? value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Please enter your phone number';
                                   } else if (!isNumeric(value)) {
                                     return 'Please enter a valid phone number';
                                   }
-                                  _phoneNumber = int.parse(value);
+                                  phoneNumber = int.parse(value) as TextEditingController;
                                   return null;
                                 },
-                              ),),
-                        ])))));
+                              ),
+                            ),
+                          TextButton(
+                            child: const Text(
+                              "Save",
+                               style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                                backgroundColor: Color.fromRGBO(0x2d,0xd4,0xbf,1),
+                              ),
+                            ),
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                final request = context.read<CookieRequest>();
+                                healthcareFetch().addData(context,
+                                 request,
+                                username.text, 
+                                keluhan.text, 
+                                DateTime.parse(appointmentDate.text), 
+                                int.parse(phoneNumber.text), 
+                                );
+                              };
+                            },
+                          ), 
+                        ]
+                      )
+                    )
+                  )
+                )
+              );
   }
 }
