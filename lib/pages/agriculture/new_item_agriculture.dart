@@ -1,26 +1,27 @@
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
 import 'package:scity_mobile/providers/cookie_request_provider.dart';
-import 'package:scity_mobile/utils/marine/add_new_item.dart';
+import 'package:scity_mobile/utils/agriculture/add_item.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scity_mobile/config.dart';
 import 'dart:convert' as convert;
 
-class NewFishPage extends StatefulWidget {
-  const NewFishPage({
+class NewAgriculture extends StatefulWidget {
+  const NewAgriculture({
     super.key,
     required this.refresh,
   });
-
   final VoidCallback refresh;
 
   @override
-  State<NewFishPage> createState() => _NewFishPageState();
+  State<NewAgriculture> createState() => _NewAgricultureState();
 }
 
-class _NewFishPageState extends State<NewFishPage> {
+class _NewAgricultureState extends State<NewAgriculture> {
   void refresh() {
     widget.refresh();
     setState(() {});
@@ -64,7 +65,7 @@ class _NewFishPageState extends State<NewFishPage> {
                     ),
                     const SizedBox(width: 4),
                     const Text(
-                      'New Fish',
+                      'New Crops',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -75,7 +76,7 @@ class _NewFishPageState extends State<NewFishPage> {
                 const SizedBox(height: 14),
                 TextFormField(
                   decoration: InputDecoration(
-                    labelText: 'Fish Name',
+                    labelText: 'Crops Name',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -92,7 +93,7 @@ class _NewFishPageState extends State<NewFishPage> {
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return 'Nama ikan tidak boleh kosong';
+                      return 'Nama tanaman tidak boleh kosong';
                     }
                     return null;
                   },
@@ -254,7 +255,7 @@ class _NewFishPageState extends State<NewFishPage> {
                 final request = context.read<CookieRequest>();
                 // addNewItem(context, request, refresh, name, description, contact, number, price, url);
                 final resp = await request
-                    .postJson("${AppConfig.apiUrl}marine/add-flutter/", convert.jsonEncode({
+                    .postJson("${AppConfig.apiUrl}agriculture/add-flutter/", convert.jsonEncode({
                   'photo_url': url,
                   'title': name,
                   'description': description,

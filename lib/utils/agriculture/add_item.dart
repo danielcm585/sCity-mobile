@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scity_mobile/config.dart';
 
-void createNewProject(context, request, refresh, title, description) async {
-  final resp = await request.post("${AppConfig.apiUrl}tender/api/v2/project/", {
+void addItem(context, request, refresh, title, description, contactName, contactNumber, price, photoURL) async {
+  final resp = await request.post("${AppConfig.apiUrl}agriculture/add-flutter", {
+    'photo_url': photoURL,
     'title': title,
-    'description': description
+    'description': description,
+    'price': price,
+    'contact_name': contactName,
+    'contact_number': contactNumber,
   });
 
-  if (resp['status'] < 400) {
+  if (resp['status'] == 'success') {
     Fluttertoast.showToast(
-      msg: 'Projek baru berhasil disimpan',
+      msg: 'Item baru berhasil disimpan',
       backgroundColor: Colors.green,
       textColor: Colors.white,
     );

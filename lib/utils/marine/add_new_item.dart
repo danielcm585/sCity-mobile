@@ -3,7 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scity_mobile/config.dart';
 
 void addNewItem(context, request, refresh, title, description, contactName, contactNumber, price, photoURL) async {
-  final resp = await request.post("${AppConfig.apiUrl}/marine/add-flutter", {
+  final resp = await request.post("${AppConfig.apiUrl}marine/add-flutter", {
     'photo_url': photoURL,
     'title': title,
     'description': description,

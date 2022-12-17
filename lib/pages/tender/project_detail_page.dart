@@ -61,6 +61,8 @@ class ProjectDetailPageState extends State<ProjectDetailPage> {
                     const SizedBox(width: 4),
                     Text(
                       snapshot.data.title,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -87,7 +89,7 @@ class ProjectDetailPageState extends State<ProjectDetailPage> {
                   )
                 ),
                 const SizedBox(height: 6),
-                Text("${snapshot.data.registrants!.length} registrants"),
+                Text("${snapshot.data.registrants!.length} ${snapshot.data.registrants!.length > 1 ? 'registrants' : 'registrant'}"),
                 const SizedBox(height: 10),
                 (
                   snapshot.data.registrants!.isNotEmpty ? 

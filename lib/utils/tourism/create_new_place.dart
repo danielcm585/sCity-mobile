@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scity_mobile/config.dart';
+import 'package:scity_mobile/models/tourism/place_model.dart';
 
-void createNewCompany(context, request, refresh, name, ptName, npwp) async {
-  final resp = await request.post("${AppConfig.apiUrl}tender/api/v2/company/", {
-    'company_name': name,
-    'pt_name': ptName,
-    'npwp': npwp
-  });
+void createNewPlace(context, request, refresh, Place place) async {
+  final resp = await request.post("${AppConfig.apiUrl}tender/api/v2/place/", place.toJson());
 
   if (resp['status'] < 400) {
     Fluttertoast.showToast(
-      msg: 'Perusahaan baru berhasil disimpan',
+      msg: 'Objek wisata baru berhasil disimpan',
       backgroundColor: Colors.green,
       textColor: Colors.white,
     );
