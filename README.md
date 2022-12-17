@@ -55,6 +55,8 @@ Memperkenalkan aplikasi super kami, sCity. sCity adalah aplikasi web yang memung
     Pada _Health services_ ini terdapat 2 jenis pengguna (admin dan user) keduanya memiliki authorization yang berbeda
     1. Admin: dapat memasukkan nama puskesmas yang registered, mereview form yang diberi user untuk dikonfirmasi.
     2. User: dapat meregistrasi ke registered puskesmas, dapat mengisi appointment date, dapat mengisi form general.
+    
+    aplikasi ini mengalami beberapa perubahan yaitu, penambahan add button pada form yang sebelumnya tidak ada, dan juga penggantian nama-nama agar lebih sesuai dengan tema aplikasi(_health service_)
 
     Aplikasi ini diharapkan dapat memudahkan client untuk mendapatkan pertolongan yang mudah dan cepat tanpa melewati burokrasi yang rumit.
 
