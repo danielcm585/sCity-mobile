@@ -26,6 +26,7 @@ class _NewAgricultureState extends State<NewAgriculture> {
     widget.refresh();
     setState(() {});
   }
+
   final _formKey = GlobalKey<FormState>();
 
   String name = '';
@@ -34,7 +35,7 @@ class _NewAgricultureState extends State<NewAgriculture> {
   String price = '';
   String number = '';
   String url = '';
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +65,7 @@ class _NewAgricultureState extends State<NewAgriculture> {
                     ),
                     const SizedBox(width: 4),
                     const Text(
-                      'New Corps',
+                      'New Crops',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -75,7 +76,7 @@ class _NewAgricultureState extends State<NewAgriculture> {
                 const SizedBox(height: 14),
                 TextFormField(
                   decoration: InputDecoration(
-                    labelText: 'Corps Name',
+                    labelText: 'Crops Name',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -92,7 +93,7 @@ class _NewAgricultureState extends State<NewAgriculture> {
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return 'Harga tidak boleh kosong';
+                      return 'Nama tanaman tidak boleh kosong';
                     }
                     return null;
                   },
@@ -121,7 +122,7 @@ class _NewAgricultureState extends State<NewAgriculture> {
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return 'Kontak tidak boleh kosong';
+                      return 'Harga tidak boleh kosong';
                     }
                     return null;
                   },
@@ -238,20 +239,19 @@ class _NewAgricultureState extends State<NewAgriculture> {
         ),
       ),
       bottomSheet: Container(
-        margin: const EdgeInsets.only(bottom: 30, left: 14, right: 14),
-        width: double.maxFinite,
-        height: 50,
-        child: TextButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(0x10,0xb9,0x81,1)),
-            foregroundColor: MaterialStateProperty.all(Colors.white),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              )
-            )
-          ),
-          onPressed: () async {
+          margin: const EdgeInsets.only(bottom: 30, left: 14, right: 14),
+          width: double.maxFinite,
+          height: 50,
+          child: TextButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                      const Color.fromRGBO(0x10, 0xb9, 0x81, 1)),
+                  foregroundColor: MaterialStateProperty.all(Colors.white),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ))),
+              onPressed: () async {
                 final request = context.read<CookieRequest>();
                 // addNewItem(context, request, refresh, name, description, contact, number, price, url);
                 final resp = await request
@@ -282,14 +282,10 @@ class _NewAgricultureState extends State<NewAgriculture> {
                 // final request = context.read<CookieRequest>();
                 // createNewProject(context, request, refresh, title, description);
               },
-          child: const Text(
-            'Save',
-            style: TextStyle(
-              fontSize: 16,
-            )
-          )
-        )
-      ),
+              child: const Text('Save',
+                  style: TextStyle(
+                    fontSize: 16,
+                  )))),
     );
   }
 }

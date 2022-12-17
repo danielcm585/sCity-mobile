@@ -92,7 +92,7 @@ class _NewFishPageState extends State<NewFishPage> {
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return 'Harga tidak boleh kosong';
+                      return 'Nama ikan tidak boleh kosong';
                     }
                     return null;
                   },
@@ -121,7 +121,7 @@ class _NewFishPageState extends State<NewFishPage> {
                   },
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
-                      return 'Kontak tidak boleh kosong';
+                      return 'Harga tidak boleh kosong';
                     }
                     return null;
                   },

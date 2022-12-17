@@ -1,6 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
+import 'package:scity_mobile/models/marine/marine_models.dart';
+import 'package:scity_mobile/pages/auth/login_page.dart';
 import 'package:scity_mobile/models/agriculture/agriculture_model.dart';
 import 'package:scity_mobile/pages/agriculture/main_agriculture.dart';
 import 'package:scity_mobile/pages/auth/login_page.dart';
@@ -356,11 +358,19 @@ class _HomePageState extends State<HomePage> {
                       ),
                       const SizedBox(height: 14),
                       OutlinedButton(
+                        
                         onPressed: () {
-                           Navigator.pushReplacement(
-                            context, 
-                            MaterialPageRoute(builder: (context) => const AgricultureMainPage()),
+                          if (isLogin == true){
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => const AgricultureMainPage()),
+                            );
+                          } else { Fluttertoast.showToast(
+                          msg: "you are not logged in",
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
                           );
+                          }
                         },
                         style: ButtonStyle(
                           
@@ -412,10 +422,17 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(height: 14),
                       OutlinedButton(
                         onPressed: () {
-                          Navigator.pushReplacement(
+                          if (isLogin == true){
+                            Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(builder: (context) => const MarineMainPage()),
                             );
+                          } else { Fluttertoast.showToast(
+                          msg: "you are not logged in",
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          );
+                          }
                         },
                         style: ButtonStyle(
                           

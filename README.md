@@ -40,7 +40,9 @@ Memperkenalkan aplikasi super kami, sCity. sCity adalah aplikasi web yang memung
     
     Pada App _Tourism Managemen_ akan ada 2 tipe pengguna (admin and user).
     1. Admin: dapat menambahkan destinasi wisata yang akan di display ke user.
-    2. User: dapat membeli tiket atdi setiap destinasi wisara.
+    2. User: dapat membeli tiket di setiap destinasi wisata.
+    
+    Pada versi terakhir App _Tourism Managemen_: Dilakukan perubahan pada autentikasi untuk user biasa dengan admin. Serta, mengubah beberapa detail bentuk tampilan seperti warna tombol dan besar kecil font tulisan.
 
    Aplikasi ini diharapkan dapat mempermudah pengguna untuk membeli tiket masuk ke Destinasi Wisata, dengan harapan sektor pariwisata di kota ini dapat terus berkembang.
 
@@ -57,6 +59,8 @@ Memperkenalkan aplikasi super kami, sCity. sCity adalah aplikasi web yang memung
     Pada _Health services_ ini terdapat 2 jenis pengguna (admin dan user) keduanya memiliki authorization yang berbeda
     1. Admin: dapat memasukkan nama puskesmas yang registered, mereview form yang diberi user untuk dikonfirmasi.
     2. User: dapat meregistrasi ke registered puskesmas, dapat mengisi appointment date, dapat mengisi form general.
+    
+    aplikasi ini mengalami beberapa perubahan yaitu, penambahan add button pada form yang sebelumnya tidak ada, dan juga penggantian nama-nama agar lebih sesuai dengan tema aplikasi(_health service_)
 
     Aplikasi ini diharapkan dapat memudahkan client untuk mendapatkan pertolongan yang mudah dan cepat tanpa melewati burokrasi yang rumit.
 

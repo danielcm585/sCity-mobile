@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:scity_mobile/models/agriculture/agriculture_model.dart';
+import 'package:scity_mobile/pages/agriculture/main_agriculture.dart';
 import 'package:scity_mobile/pages/auth/login_page.dart';
 import 'package:scity_mobile/pages/auth/register_page.dart';
 import 'package:scity_mobile/pages/tender/tender_main_page.dart';
@@ -61,6 +63,15 @@ class _AppDrawerState extends State<AppDrawer> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => const MarineMainPage()),
+                        );
+                      }),
+                  ListTile(
+                      title: const Text('Agriculture'),
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AgricultureMainPage()),
                         );
                       }),
                   ListTile(

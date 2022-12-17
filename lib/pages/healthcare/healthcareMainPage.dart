@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scity_mobile/components/general/drawer.dart';
-import 'package:scity_mobile/utils/healthcare/healthcareFetch.dart';
+import 'package:scity_mobile/utils/healthcare/healthcareMainFetch.dart';
 import 'package:scity_mobile/providers/cookie_request_provider.dart';
 import 'package:scity_mobile/pages/healthcare/healthcareFormPage.dart';
 import 'package:scity_mobile/pages/healthcare/healthcareDetailsPage.dart';
 import 'package:intl/intl.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+
 
 class HealthcarePage extends StatefulWidget {
   const HealthcarePage({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class _HealthcarePageState extends State<HealthcarePage> {
       ),
       drawer: AppDrawer(),
       body: FutureBuilder(
-        future: healthcareFetch(context),
+        future: fetchData(context.read<CookieRequest>()),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(

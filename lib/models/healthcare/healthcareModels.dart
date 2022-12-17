@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 List<healthcareModels> healthcareModelsFromJson(String str) =>
     List<healthcareModels>.from(
         json.decode(str).map((x) => healthcareModels.fromJson(x)));
@@ -28,11 +27,11 @@ class healthcareModels {
 
   factory healthcareModels.fromJson(Map<String, dynamic> json) =>
       healthcareModels(
-        username: json["fields"]["username"],
-        keluhan: json["fields"]["keluhan"],
-        appointmentDate: DateTime.parse(json["fields"]["appointment_date"]),
-        phoneNumber: json["fields"]["phone_number"],
-        appointmentStatus: json["fields"]["appointment_status"],
+        username: json["username"],
+        keluhan: json["keluhan"],
+        appointmentDate: DateTime.parse(json["appointment_date"]),
+        phoneNumber: json["phone_number"],
+        appointmentStatus: json["appointment_status"],
       );
 
   Map<String, dynamic> toJson() => {
