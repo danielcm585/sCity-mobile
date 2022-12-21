@@ -42,9 +42,7 @@ Memperkenalkan aplikasi super kami, sCity. sCity adalah aplikasi web yang memung
     1. Admin: dapat menambahkan destinasi wisata yang akan di display ke user.
     2. User: dapat membeli tiket di setiap destinasi wisata.
     
-    Pada versi terakhir App _Tourism Managemen_: Dilakukan perubahan pada autentikasi untuk user biasa dengan admin. Serta, mengubah beberapa detail bentuk tampilan seperti warna tombol dan besar kecil font tulisan.
-
-   Aplikasi ini diharapkan dapat mempermudah pengguna untuk membeli tiket masuk ke Destinasi Wisata, dengan harapan sektor pariwisata di kota ini dapat terus berkembang.
+    Aplikasi ini diharapkan dapat mempermudah pengguna untuk membeli tiket masuk ke Destinasi Wisata, dengan harapan sektor pariwisata di kota ini dapat terus berkembang.
 
 - _Waste bank management system_ - Muhammad Adryan Haska Putra
 
